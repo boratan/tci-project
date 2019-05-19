@@ -26,14 +26,4 @@ public class LogicMain {
     private Set<URL> crawlUrl(URL headURL){
         throw new NotImplementedException();
     }
-
-    /**
-     * Start a Scraper task on a new thread.
-     * On complete store the data
-     * @param url
-     * @param storage
-     */
-    private void startScraperThread(URL url, Set<IModel> storage){
-
-    }
 }
