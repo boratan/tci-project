@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'tci'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// add for automatically downloading javadoc while developing (for ctrl-Q)
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = false
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // testing
+    compile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.0.4'
+    compile 'org.mockito:mockito-core:2.18.3'
+    compile 'org.easytesting:fest-assert:1.4'
+    compile 'org.hamcrest:hamcrest-all:1.3'
+}
