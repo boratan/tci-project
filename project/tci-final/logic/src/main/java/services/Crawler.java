@@ -24,7 +24,7 @@ public class Crawler {
     }
 
     /**
-     * Adds the given URL to a Set a single instance of a URL
+     * Adds the given URL to a Set of a single instance of a URL
      * @param startURL
      * @return
      */
