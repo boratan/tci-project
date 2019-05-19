@@ -2,15 +2,15 @@ package models;
 
 public class RequestInfo implements IModel{
     private Integer time;
-    private Integer pagesExplosed;
+    private Integer pagesExplored;
     private Integer uniquePagesExplored;
     private Integer searchDepth;
 
     public RequestInfo(){}
 
-    public RequestInfo(Integer time, Integer pagesExplosed, Integer uniquePagesExplored, Integer searchDepth){
+    public RequestInfo(Integer time, Integer pagesExplored, Integer uniquePagesExplored, Integer searchDepth){
         this.time = time;
-        this.pagesExplosed = pagesExplosed;
+        this.pagesExplored = pagesExplored;
         this.uniquePagesExplored = uniquePagesExplored;
         this.searchDepth = searchDepth;
     }
@@ -23,17 +23,15 @@ public class RequestInfo implements IModel{
         this.time = time;
     }
 
-    public Integer getPagesExplosed() {
-        return pagesExplosed;
+    public Integer getPagesExplored() {
+        return pagesExplored;
     }
 
-    public void setPagesExplosed(Integer pagesExplosed) {
-        this.pagesExplosed = pagesExplosed;
+    public void setPagesExplored(Integer pagesExplosed) {
+        this.pagesExplored = pagesExplosed;
     }
 
-    public Integer getUniquePagesExplored() {
-        return uniquePagesExplored;
-    }
+    public Integer getUniquePagesExplored() { return uniquePagesExplored; }
 
     public void setUniquePagesExplored(Integer uniquePagesExplored) {
         this.uniquePagesExplored = uniquePagesExplored;
