@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BookSerializerTest {
+public class GetAllSerializerTest {
 
     @Test
     public void afterConstructionGsonObjectCanBeReturned() {
@@ -18,12 +18,12 @@ public class BookSerializerTest {
     }
 
     @Test(expected = InvalidArgumentException.class)
-    public void serializeToJsonReturnsInvalidArgumentExceptionIfBookIsNull() {
+    public void serializeToJsonReturnsInvalidArgumentExceptionIfGetAllIsNull() {
 
     }
 
     @Test
-    public void deserializeFromJsonReturnsBookThatIsNotNull() {
+    public void deserializeFromJsonReturnsGetAllThatIsNotNull() {
 
     }
 
