@@ -1,3 +1,4 @@
+import models.EnrichedUrl;
 import models.IModel;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -18,12 +19,27 @@ public class LogicMain {
     }
 
     /**
+     * Adds the given URL to a Set of a single instance of a URL
+     * @param startURL
+     * @return
+     */
+    private Set<URL> headURL(final URL startURL){
+        throw new NotImplementedException();
+    }
+
+    /**
      * Instantiates a Crawler and begins to crawl the provided URL.
      * When complete, returns a set of crawled URLs
      * @param headURL
      * @return
      */
-    private Set<URL> crawlUrl(URL headURL){
+    private void crawlUrl(URL headURL){
         throw new NotImplementedException();
     }
+
+    /**
+     * Instantiates a TreadService and starts the scraping for all distinct URLs.
+     * @param distinctUrls The distinct crawled URLs that should be scraped.
+     */
+    private void scrapeUrls(Set<EnrichedUrl> distinctUrls){ throw new NotImplementedException(); }
 }

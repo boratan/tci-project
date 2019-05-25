@@ -1,5 +1,6 @@
 package services;
 
+import models.EnrichedUrl;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.URL;
@@ -10,8 +11,7 @@ public class Crawler {
     /**
      * Constructor for Crawler
      */
-    private Crawler(){
-    }
+    private Crawler(){}
 
     /**
      * Recursively crawls the given Set of URLs.
@@ -19,16 +19,7 @@ public class Crawler {
      * @param urls
      * @return
      */
-    private Set<URL> crawl(final Set<URL> urls){
-        throw new NotImplementedException();
-    }
-
-    /**
-     * Adds the given URL to a Set of a single instance of a URL
-     * @param startURL
-     * @return
-     */
-    private Set<URL> headURL(final Set<URL> startURL){
+    private Set<EnrichedUrl> crawl(final Set<URL> urls){
         throw new NotImplementedException();
     }
 }
