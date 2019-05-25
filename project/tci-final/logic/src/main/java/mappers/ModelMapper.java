@@ -14,14 +14,14 @@ public class ModelMapper {
      * @param data
      * @return
      */
-    public IModel mapToModel(String data) { throw new NotImplementedException(); }
+    public IModel mapToModel(Element data) { throw new NotImplementedException(); }
 
     /**
      * Maps data from the scraper to Book model.
      * @param data
      * @return
      */
-    private Book mapToBook(String data) {
+    private Book mapToBook(Element data) {
         throw new NotImplementedException();
     }
 
@@ -30,7 +30,7 @@ public class ModelMapper {
      * @param data
      * @return
      */
-    private Movie mapToMovie(String data) {
+    private Movie mapToMovie(Element data) {
         throw new NotImplementedException();
     }
 
@@ -39,7 +39,7 @@ public class ModelMapper {
      * @param data
      * @return
      */
-    private Music mapToMusic(String data) {
+    private Music mapToMusic(Element data) {
         throw new NotImplementedException();
     }
 }

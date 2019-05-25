@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MovieSerializerTest {
+public class GetOneSerializerTest {
 
     @Test
     public void afterConstructionGsonObjectCanBeReturned() {
@@ -18,12 +18,12 @@ public class MovieSerializerTest {
     }
 
     @Test(expected = InvalidArgumentException.class)
-    public void serializeToJsonReturnsInvalidArgumentExceptionIfMovieIsNull() {
+    public void serializeToJsonReturnsInvalidArgumentExceptionIfGetOneIsNull() {
 
     }
 
     @Test
-    public void deserializeFromJsonReturnsMovieThatIsNotNull() {
+    public void deserializeFromJsonReturnsGetOneThatIsNotNull() {
 
     }
 
@@ -36,5 +36,4 @@ public class MovieSerializerTest {
     public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsEmpty() {
 
     }
-
 }
