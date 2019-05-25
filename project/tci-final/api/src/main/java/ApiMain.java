@@ -48,10 +48,10 @@ public class ApiMain {
 
     /**
      * Reads from file where the information about the last request is stored
-     * and return it in the format of RequestInfo model.
+     * and return it in the format of json String.
      * @return
      */
-    private RequestInfo readFromFile() {
+    private String readFromFile() {
         throw new NotImplementedException();
     }
 }
