@@ -1,14 +1,17 @@
 package services;
 
+import models.Book;
 import models.EnrichedUrl;
+import models.IModel;
 import org.jsoup.nodes.Document;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.concurrent.Callable;
 
 /**
  * The class representing a scraper task that deals with a single url.
  */
-public class Scraper implements Runnable {
+public class Scraper implements Callable<IModel> {
 
     private final long waitTime;
     private final EnrichedUrl enrichedUrl;
@@ -23,31 +26,20 @@ public class Scraper implements Runnable {
         this.enrichedUrl = url;
     }
 
-
+    /**
+     * Calls all methods from the class and returns(if possible) a ready IModel from the provided url
+     */
     @Override
-    public void run()
-    {
-        try {
-            // sleep for user given millisecond
-            // before checking again
-            Thread.sleep(waitTime);
-
-            // return current thread name
-            System.out.println(Thread
-                    .currentThread()
-                    .getName());
-        }
-
-        catch (InterruptedException ex) {
-            Logger
-                    .getLogger(Scraper.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
+    public IModel call() throws Exception {
+        throw new NotImplementedException();
     }
 
     /**
      * Gets the data required for mapping the model and adds the mapped model to the repository of found models.
      * @param doc HTML of the page that is being scraped.
      */
-    private void getModel(Document doc) {}
+    private IModel getIModel(Document doc) {
+        throw new NotImplementedException();
+    }
+
 }
