@@ -1,32 +1,24 @@
 package services;
 
-import java.net.URL;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
+import models.EnrichedUrl;
+import models.IModel;
 
-public class ThreadService {
+import java.util.Set;
+import java.util.concurrent.FutureTask;
+
+public class ThreadService{
+    private Set<FutureTask<IModel>> tasks;
 
     /**
      * Constructor of ThreadService class.
-     * @param urls All crawler URLs that need to be scraped.
-     * @param maxNumberOfThreads The maximum number of threads that can run at the same time.
+     * @param distinctUrls Distinct crawled URLs that need to be scraped.
      */
-    public ThreadService(Set<URL> urls, int maxNumberOfThreads) {}
+    public ThreadService(Set<EnrichedUrl> distinctUrls, Set<IModel> scrapedModels) {}
 
     /**
      * Starts scraping of the provided urls.
      */
     public void scrape(){}
 
-    /**
-     * Invoked as the scraping is done. Stops the tread pool.
-     */
-    protected void scrapingCompleted(){}
-
-    /**
-     * This method is invoced by any thread that is about to die.
-     * @param thread
-     */
-    @Override
-    public void notifyOfThreadComplete(Thread thread){}
+    public void checkFutureTasks(){}
 }
