@@ -12,16 +12,14 @@ import java.util.concurrent.Callable;
  */
 public class Scraper implements Callable<IModel> {
 
-    private final long waitTime;
     private final EnrichedUrl enrichedUrl;
 
     /**
      * Constructor of Scraper class.
      * @param url The URL that needs to be scraped.
      */
-    public Scraper(EnrichedUrl url, int timeInMillis)
+    public Scraper(EnrichedUrl url)
     {
-        this.waitTime = timeInMillis;
         this.enrichedUrl = url;
     }
 
@@ -41,4 +39,7 @@ public class Scraper implements Callable<IModel> {
         throw new NotImplementedException();
     }
 
+    public EnrichedUrl getEnrichedUrl() {
+        return enrichedUrl;
+    }
 }
