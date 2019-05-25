@@ -1,8 +1,18 @@
 package serializers;
 
+import com.google.gson.Gson;
 import models.Music;
 
 public class MusicSerializer implements IGenericSerializer<Music> {
+    private Gson gson;
+
+    public MusicSerializer() {
+        gson = new Gson();
+    }
+
+    public Gson getGson() {
+        return gson;
+    }
 
     /**
      * Serializes the Music model to JSON format.

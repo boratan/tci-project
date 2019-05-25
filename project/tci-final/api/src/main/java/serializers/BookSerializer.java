@@ -1,8 +1,18 @@
 package serializers;
 
+import com.google.gson.Gson;
 import models.Book;
 
 public class BookSerializer implements IGenericSerializer<Book> {
+    private Gson gson;
+
+    public BookSerializer() {
+        gson = new Gson();
+    }
+
+    public Gson getGson() {
+        return gson;
+    }
 
     /**
      * Serializes the Book model to JSON format.
