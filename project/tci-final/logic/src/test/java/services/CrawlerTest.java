@@ -7,9 +7,6 @@ import static org.junit.Assert.*;
 public class CrawlerTest {
 
     @Test
-    public void crawlerIsSuccessfullyCreatedOnConstructorCall(){}
-
-    @Test
     public void crawlCallsCrawlIfUrlsToCrawlArePresent(){}
 
     @Test

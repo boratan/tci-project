@@ -7,70 +7,46 @@ import static org.junit.Assert.*;
 public class BookTest {
 
     @Test
-    public void BookIsSuccessfullyCreatedWhenConstructorValuesAreProperlyGiven(){}
+    public void BookNameIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookNameIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookGenreIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookGenreIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookFormatIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookFormatIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookYearIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookYearIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookAuthorsIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookAuthorsIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookPublisherIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookPublisherIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookIsbnIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void BookIsbnIsNotNullWhenConstructorValueIsNotNull(){}
+    public void BookNameThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookNameReturnedIsNotNull(){}
+    public void BookGenreThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookGenreReturnedIsNotNull(){}
+    public void BookFormatThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookFormatReturnedIsNotNull(){}
+    public void BookYearThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookYearReturnedIsNotNull(){}
+    public void BookAuthorsThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookAuthorReturnedIsNotNull(){}
+    public void BookPublisherThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void BookPublisherReturnedIsNotNull(){}
-
-    @Test
-    public void BookIsbnReturnedIsNotNull(){}
-
-    @Test
-    public void BookNameIsNotNullWhenSet(){}
-
-    @Test
-    public void BookGenreIsNotNullWhenSet(){}
-
-    @Test
-    public void BookFormatIsNotNullWhenSet(){}
-
-    @Test
-    public void BookYearIsNotNullWhenSet(){}
-
-    @Test
-    public void BookAuthorsIsNotNullWhenSet(){}
-
-    @Test
-    public void BookPublisherIsNotNullWhenSet(){}
-
-    @Test
-    public void BookIsbnIsNotNullWhenSet(){}
+    public void BookIsbnThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
     public void BookNameIsSetAsDesired(){}

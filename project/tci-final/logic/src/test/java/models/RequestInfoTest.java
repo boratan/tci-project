@@ -7,46 +7,28 @@ import static org.junit.Assert.*;
 public class RequestInfoTest {
 
     @Test
-    public void RequestIsSuccessfullyCreatedWhenConstructorValuesAreProperlyGiven(){}
+    public void RequestPagesExploredIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void RequestPagesExploredIsNotNullWhenConstructorValueIsNotNull(){}
+    public void RequestUniquePagesExploredNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void RequestUniquePagesExploredNotNullWhenConstructorValueIsNotNull(){}
+    public void RequestSearchDepthIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void RequestSearchDepthIsNotNullWhenConstructorValueIsNotNull(){}
+    public void RequestIdReturnedIsLegalValueIfSet(){}
 
     @Test
-    public void RequestIdReturnedIsNotNullIfSet(){}
+    public void RequestTimeReturnedIsLegalValueIfSet(){}
 
     @Test
-    public void RequestTimeReturnedIsNotNullIfSet(){}
+    public void RequestPagesExploredReturnedIsInvoked(){}
 
     @Test
-    public void RequestPagesExploredReturnedIsNotNull(){}
+    public void RequestUniquePagesExploredReturnedIsInvoked(){}
 
     @Test
-    public void RequestUniquePagesExploredReturnedIsNotNull(){}
-
-    @Test
-    public void RequestSearchDepthReturnedIsNotNull(){}
-
-    @Test
-    public void RequestIdIsNotNullWhenSet(){}
-
-    @Test
-    public void RequestTimeIsNotNullWhenSet(){}
-
-    @Test
-    public void RequestPagesExploredAreNotNullWhenSet(){}
-
-    @Test
-    public void RequestUniquePagesExploredAreNotNullWhenSet(){}
-
-    @Test
-    public void RequestSearchDepthIsNotNullWhenSet(){}
+    public void RequestSearchDepthReturnedIsInvoked(){}
 
     @Test
     public void RequestIdIsSetAsDesired(){}

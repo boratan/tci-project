@@ -7,70 +7,46 @@ import static org.junit.Assert.*;
 public class MovieTest {
 
     @Test
-    public void MovieIsSuccessfullyCreatedWhenConstructorValuesAreProperlyGiven(){}
+    public void MovieNameIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieNameIsNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieGenreIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieGenreIsNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieFormatIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieFormatIsNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieYearIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieYearIsNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieDirectorIsNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieDirectorIsNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieWritersAreNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieWritersAreNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieWStarsAreNotNullWhenConstructorIsInvoked(){}
 
     @Test
-    public void MovieWStarsAreNotNullWhenConstructorValueIsNotNull(){}
+    public void MovieNameThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieNameReturnedIsNotNull(){}
+    public void MovieGenreThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieGenreReturnedIsNotNull(){}
+    public void MovieFormatThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieFormatReturnedIsNotNull(){}
+    public void MovieYearThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieYearReturnedIsNotNull(){}
+    public void MovieDirectorThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieDirectorReturnedIsNotNull(){}
+    public void MovieWritersThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
-    public void MovieWritersReturnedAreNotNull(){}
-
-    @Test
-    public void MovieStarsReturnedAreNotNull(){}
-
-    @Test
-    public void MovieNameIsNotNullWhenSet(){}
-
-    @Test
-    public void MovieGenreIsNotNullWhenSet(){}
-
-    @Test
-    public void MovieFormatIsNotNullWhenSet(){}
-
-    @Test
-    public void MovieYearIsNotNullWhenSet(){}
-
-    @Test
-    public void MovieDirectorIsNotNullWhenSet(){}
-
-    @Test
-    public void MovieWritersAreNotNullWhenSet(){}
-
-    @Test
-    public void MovieStarsAreIsNotNullWhenSet(){}
+    public void MovieStarsThrowsExceptionIfTheGivenValueIsInvalid(){}
 
     @Test
     public void MovieNameIsSetAsDesired(){}
