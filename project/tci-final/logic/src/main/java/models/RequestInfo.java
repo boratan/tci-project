@@ -1,6 +1,7 @@
 package models;
 
 public class RequestInfo implements IModel{
+    private Integer id;
     private Integer time;
     private Integer pagesExplored;
     private Integer uniquePagesExplored;
@@ -8,8 +9,7 @@ public class RequestInfo implements IModel{
 
     public RequestInfo(){}
 
-    public RequestInfo(Integer time, Integer pagesExplored, Integer uniquePagesExplored, Integer searchDepth){
-        this.time = time;
+    public RequestInfo(Integer pagesExplored, Integer uniquePagesExplored, Integer searchDepth){
         this.pagesExplored = pagesExplored;
         this.uniquePagesExplored = uniquePagesExplored;
         this.searchDepth = searchDepth;
@@ -44,4 +44,8 @@ public class RequestInfo implements IModel{
     public void setSearchDepth(Integer searchDepth) {
         this.searchDepth = searchDepth;
     }
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 }

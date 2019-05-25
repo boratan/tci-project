@@ -1,6 +1,5 @@
 package services;
 
-import models.Book;
 import models.EnrichedUrl;
 import models.IModel;
 import org.jsoup.nodes.Document;

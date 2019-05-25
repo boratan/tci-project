@@ -33,7 +33,7 @@ public class LogicMain {
      * @param headURL
      * @return
      */
-    private void crawlUrl(URL headURL){
+    private void crawlUrls(URL headURL){
         throw new NotImplementedException();
     }
 

@@ -3,21 +3,21 @@ package models;
 import java.net.URL;
 
 public class EnrichedUrl {
-    private URL ulr;
+    private URL url;
     private Integer depth;
 
 
-    public EnrichedUrl(URL ulr, Integer depth) {
-        this.ulr = ulr;
+    public EnrichedUrl(URL url, Integer depth) {
+        this.url = url;
         this.depth = depth;
     }
 
-    public URL getUlr() {
-        return ulr;
+    public URL getUrl() {
+        return url;
     }
 
-    public void setUlr(URL ulr) {
-        this.ulr = ulr;
+    public void setUrl(URL url) {
+        this.url = url;
     }
 
     public Integer getDepth() {
