@@ -20,8 +20,5 @@ public class ScraperTest {
     public void CheckThatGetIModelMethodIsCalledWhenCallMethodIsExecuted(){}
 
     @Test
-    public void EnrichedUrlIsNotNullWhenConstructorValueIsNotNull(){}
-
-    @Test
-    public void WhenEnrichedUrlIsReturnedItIsNotNull(){}
+    public void EnrichedUrlIsNotNullAfterScraperIsConstructed(){}
 }
