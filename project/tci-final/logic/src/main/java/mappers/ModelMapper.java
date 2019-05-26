@@ -10,36 +10,40 @@ public class ModelMapper {
 
     /**
      * Checks the category of the data provided and calls a method to map
-     * to a IModel instance accordingly. Returns an exception if no category is found.
+     * to a IModel instance accordingly.
+     * Returns ScrapedDataDoesNotContainIModelException if no category is found.
      * @param data
      * @return
      */
-    public IModel mapToModel(String data) { throw new NotImplementedException(); }
+    public IModel mapToModel(Element data) { throw new NotImplementedException(); }
 
     /**
      * Maps data from the scraper to Book model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
-    private Book mapToBook(String data) {
+    private Book mapToBook(Element data) {
         throw new NotImplementedException();
     }
 
     /**
      * Maps data from the scraper to Movie model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
-    private Movie mapToMovie(String data) {
+    private Movie mapToMovie(Element data) {
         throw new NotImplementedException();
     }
 
     /**
      * Maps data from the scraper to Music model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
-    private Music mapToMusic(String data) {
+    private Music mapToMusic(Element data) {
         throw new NotImplementedException();
     }
 }

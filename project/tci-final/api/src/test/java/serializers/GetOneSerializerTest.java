@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RequestInfoSerializerTest {
+public class GetOneSerializerTest {
 
     @Test
     public void afterConstructionGsonObjectCanBeReturned() {
@@ -18,12 +18,12 @@ public class RequestInfoSerializerTest {
     }
 
     @Test(expected = InvalidArgumentException.class)
-    public void serializeToJsonReturnsInvalidArgumentExceptionIfRequestInfoIsNull() {
+    public void serializeToJsonReturnsInvalidArgumentExceptionIfGetOneIsNull() {
 
     }
 
     @Test
-    public void deserializeFromJsonReturnsRequestInfoThatIsNotNull() {
+    public void deserializeFromJsonReturnsGetOneThatIsNotNull() {
 
     }
 
