@@ -10,7 +10,8 @@ public class ModelMapper {
 
     /**
      * Checks the category of the data provided and calls a method to map
-     * to a IModel instance accordingly. Returns an exception if no category is found.
+     * to a IModel instance accordingly.
+     * Returns ScrapedDataDoesNotContainIModelException if no category is found.
      * @param data
      * @return
      */
@@ -18,6 +19,7 @@ public class ModelMapper {
 
     /**
      * Maps data from the scraper to Book model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
@@ -27,6 +29,7 @@ public class ModelMapper {
 
     /**
      * Maps data from the scraper to Movie model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
@@ -36,6 +39,7 @@ public class ModelMapper {
 
     /**
      * Maps data from the scraper to Music model.
+     * Returns ScrapedDataDoesNotContainIModelException if data has not book.
      * @param data
      * @return
      */
