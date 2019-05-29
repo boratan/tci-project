@@ -47,7 +47,7 @@ public class LogicMain {
      * @param headURL
      * @return
      */
-    private void crawlUrls(URL headURL){
+    private Pair<RequestInfo, Set<IModel>> crawlAndScrapeUrls(URL headURL){
         throw new NotImplementedException();
     }
 
@@ -55,5 +55,5 @@ public class LogicMain {
      * Instantiates a TreadService and starts the scraping for all distinct URLs.
      * @param distinctUrls The distinct crawled URLs that should be scraped.
      */
-    private Pair<RequestInfo, Set<IModel>> scrapeUrls(Set<EnrichedUrl> distinctUrls){ throw new NotImplementedException(); }
+    //private Pair<RequestInfo, Set<IModel>> scrapeUrls(Set<EnrichedUrl> distinctUrls){ throw new NotImplementedException(); }
 }
