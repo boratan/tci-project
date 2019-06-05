@@ -33,19 +33,4 @@ public class ApiMainTest {
     public void getLastRequestReturnsCode404NotFoundIfReadFromFileReturnsNull() {
 
     }
-
-    @Test
-    public void writeToFileReturnsInvalidArgumentExceptionIfRequestInfoIsNull() {
-
-    }
-
-    @Test
-    public void readFromFileReturnsNotEmptyString() {
-
-    }
-
-    @Test
-    public void readFromFileReturnsNullIfThereIsNoInformationInTheFileStorage() {
-
-    }
 }

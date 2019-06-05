@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class GetAllSerializerTest {
 
     @Test
-    public void afterConstructionGsonObjectCanBeReturned() {
+    public void afterConstructionJsonObjectCanBeReturned() {
 
     }
 
