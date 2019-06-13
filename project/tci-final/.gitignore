@@ -69,3 +69,7 @@ fabric.properties
 *.iml
 logic/*.iml
 api/*.iml
+
+.gradle/*
+logic/.gradle/*
+api/.gradle/*
