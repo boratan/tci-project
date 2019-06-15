@@ -1,39 +1,33 @@
 package serializers;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
+import models.GetAll;
+import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GetAllSerializerTest {
 
-    @Test
-    public void afterConstructionJsonObjectCanBeReturned() {
+    private GetAllSerializer gas;
 
+    @Before
+    public void setUp(){
+        gas = new GetAllSerializer();
     }
 
-    @Test
-    public void serializeToJsonReturnsValidString() {
-
+    @Test(expected = IllegalArgumentException.class)
+    public void serializeToJsonReturnsIllegalArgumentExceptionIfGetAllIsNull() {
+        GetAll ga = null;
+        String jsonResult = gas.serializeToJson(ga);
     }
 
-    @Test(expected = InvalidArgumentException.class)
-    public void serializeToJsonReturnsInvalidArgumentExceptionIfGetAllIsNull() {
-
-    }
-
-    @Test
-    public void deserializeFromJsonReturnsGetAllThatIsNotNull() {
-
-    }
-
-    @Test(expected = InvalidArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsNull() {
-
+        String testString = null;
+        GetAll ga = gas.deserializeFromJson(testString);
     }
 
-    @Test(expected = InvalidArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsEmpty() {
-
+        String testString = "";
+        GetAll ga = gas.deserializeFromJson(testString);
     }
 }

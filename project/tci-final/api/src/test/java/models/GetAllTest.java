@@ -1,36 +1,34 @@
 package models;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-
 import java.util.*;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 public class GetAllTest {
 
-    private GetAll ga = new GetAll();
+    private GetAll ga;
+
+    @Before
+    public void setUp(){
+        ga = new GetAll();
+    }
 
     @Test
     public void afterConstructionListOfBooksCanBeReturned() {
-        //GetAll ga = new GetAll();
         List<Book> testBooks = new ArrayList<>();
         Assert.assertEquals(ga.getBooks(), testBooks);
     }
 
     @Test
     public void afterConstructionListOfMoviesCanBeReturned() {
-        //GetAll ga = new GetAll();
         List<Movie> testMovies = new ArrayList<>();
         Assert.assertEquals(ga.getMovies(), testMovies);
     }
 
     @Test
     public void afterConstructionListOfMusicCanBeReturned() {
-        //GetAll ga = new GetAll();
         List<Music> testMusic = new ArrayList<>();
         Assert.assertEquals(ga.getMusic(), testMusic);
     }
