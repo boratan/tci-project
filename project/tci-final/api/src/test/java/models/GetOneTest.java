@@ -16,7 +16,7 @@ public class GetOneTest {
      * The test creates mock of IModel to add to a set. The set is then used in the creation of the GetOne model.
      * Then the method getResult of the model is invoked with expected not null return.
      *
-     * The method makes use of dummy mock object for indirect input.
+     * The method makes use of dummy mock object for direct input.
      */
     @Test
     public void afterConstructionNotNullIModelCanBeReturned() {
