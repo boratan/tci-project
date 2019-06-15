@@ -1,39 +1,60 @@
 package serializers;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
+import models.GetOne;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
+/**
+ * Author: M. Andreeva
+ */
 public class GetOneSerializerTest {
 
-    @Test
-    public void afterConstructionGsonObjectCanBeReturned() {
+    private GetOneSerializer serializer;
 
+    @Before
+    public void setUp() {
+        serializer = new GetOneSerializer();
     }
 
-    @Test
-    public void serializeToJsonReturnsValidString() {
+    /**
+     * The test creates null GetOne object and passes it to serializeToJson method of SUT.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void serializeToJsonThrowsIllegalArgumentExceptionIfGetOneIsNull() {
+        //arrange
+        GetOne model = null;
 
+        //act
+        String result = serializer.serializeToJson(model);
+
+        //assert is the expected exception
     }
 
-    @Test(expected = InvalidArgumentException.class)
-    public void serializeToJsonReturnsInvalidArgumentExceptionIfGetOneIsNull() {
+    /**
+     * The test creates null string and passes it to deserializeFromJson method of SUT.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void deserializeFromJsonReturnsIllegalArgumentExceptionIfStringIsNull() {
+        //arrange
+        String input = null;
 
+        //act
+        GetOne result = serializer.deserializeFromJson(input);
+
+        //assert is the expected exception
     }
 
-    @Test
-    public void deserializeFromJsonReturnsGetOneThatIsNotNull() {
+    /**
+     * The test creates empty string and passes it to deserializeFromJson method of SUT.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void deserializeFromJsonReturnsIllegalArgumentExceptionIfStringIsEmpty() {
+        //arrange
+        String input = "";
 
-    }
+        //act
+        GetOne result = serializer.deserializeFromJson(input);
 
-    @Test(expected = InvalidArgumentException.class)
-    public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsNull() {
-
-    }
-
-    @Test(expected = InvalidArgumentException.class)
-    public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsEmpty() {
-
+        //assert is the expected exception
     }
 }
