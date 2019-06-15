@@ -1,12 +1,7 @@
 package mappers;
-import models.Book;
-import models.IModel;
-import models.Movie;
-import models.Music;
+import models.*;
 import org.jsoup.nodes.Element;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import javax.lang.model.element.Element;
 
 public class ModelMapper {
 
