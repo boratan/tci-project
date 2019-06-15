@@ -1,5 +1,7 @@
 package models;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -20,10 +22,20 @@ public class GetAll extends BaseRequest {
         this.movies = new ArrayList<>();
         this.books = new ArrayList<>();
         this.music = new ArrayList<>();
-        this.splitListToModels(models);
+        if (!models.isEmpty())
+            this.splitListToModels(models);
+        else throw new IllegalArgumentException();
     }
 
     private void splitListToModels(Set<IModel> models) {
+        for (IModel m : models) {
+            if (m instanceof Book)
+                this.books.add((Book) m);
+            else if (m instanceof Movie)
+                this.movies.add((Movie) m);
+            else if (m instanceof Music)
+                this.music.add((Music) m);
+        }
     }
 
     public List<Movie> getMovies() {
