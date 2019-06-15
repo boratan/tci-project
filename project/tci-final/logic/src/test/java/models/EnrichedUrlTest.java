@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import static org.mockito.Mockito.mock;
@@ -14,10 +15,16 @@ import static org.mockito.Mockito.mock;
 public class EnrichedUrlTest {
 
     private EnrichedUrl object;
-    private URL url = mock(URL.class);
 
     @Before
     public void setUp() {
+        URL url = null;
+        try {
+            url = new URL("https://portal.fhict.nl");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         object = new EnrichedUrl(url, 2);
     }
 
