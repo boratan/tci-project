@@ -1,17 +1,22 @@
 package models;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BaseRequestTest {
+    private BaseRequest baseRequest;
+
+    @Before
+    public void setUp(){
+        baseRequest = new BaseRequest();
+    }
 
     @Test
     public void afterConstructionIntIdCanBeReturned() {
-        BaseRequest request = new BaseRequest();
-
-        Integer id = request.getId();
+        int id = baseRequest.getId();
 
         Assert.assertNotNull(id);
         Assert.assertTrue(id > 0);
@@ -19,11 +24,9 @@ public class BaseRequestTest {
 
     @Test
     public void afterConstructionLongTimeInMilliCanBeReturned() {
-        BaseRequest request = new BaseRequest();
+        long time = baseRequest.getTimeInMilli();
 
-        request.getTimeInMilli();
-
-        Assert.assertNotNull(id);
-        Assert.assertTrue(id > 0);
+        Assert.assertNotNull(time);
+        Assert.assertTrue(time > 0);
     }
 }
