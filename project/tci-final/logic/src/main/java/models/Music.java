@@ -2,15 +2,16 @@ package models;
 
 public class Music implements IModel{
     private String name;
+    private String genre;
     private String format;
-    private String year;
+    private Integer year;
     private String artist;
 
     public Music(){}
 
-    public Music(String name, String format, String year, String artist){
-
+    public Music(String name, String genre, String format, Integer year, String artist){
         this.name = name;
+        this.genre = genre;
         this.format = format;
         this.year = year;
         this.artist = artist;
@@ -24,6 +25,10 @@ public class Music implements IModel{
         this.name = name;
     }
 
+    public String getGenre() { return genre; }
+
+    public void setGenre(String genre) { this.genre = genre; }
+
     public String getFormat() {
         return format;
     }
@@ -32,11 +37,11 @@ public class Music implements IModel{
         this.format = format;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
