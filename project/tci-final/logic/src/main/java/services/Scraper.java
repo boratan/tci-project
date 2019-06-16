@@ -35,7 +35,7 @@ public class Scraper implements Callable<IModel> {
      * Gets the data required for mapping the model and adds the mapped model to the repository of found models.
      * @param doc HTML of the page that is being scraped.
      */
-    private IModel getIModel(Document doc) {
+    public IModel getIModel(Document doc) {
         throw new NotImplementedException();
     }
 
