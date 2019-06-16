@@ -20,7 +20,10 @@ public class RequestInfo implements IModel{
     }
 
     public void setTime(Integer time) {
-        this.time = time;
+        if (time > 0)
+            this.time = time;
+        else
+            throw new IllegalArgumentException();
     }
 
     public Integer getPagesExplored() {
@@ -28,13 +31,19 @@ public class RequestInfo implements IModel{
     }
 
     public void setPagesExplored(Integer pagesExplosed) {
-        this.pagesExplored = pagesExplosed;
+        if (pagesExplosed > 0)
+            this.pagesExplored = pagesExplosed;
+        else
+            throw new IllegalArgumentException();
     }
 
     public Integer getUniquePagesExplored() { return uniquePagesExplored; }
 
     public void setUniquePagesExplored(Integer uniquePagesExplored) {
-        this.uniquePagesExplored = uniquePagesExplored;
+        if (uniquePagesExplored > 0)
+            this.uniquePagesExplored = uniquePagesExplored;
+        else
+            throw new IllegalArgumentException();
     }
 
     public Integer getSearchDepth() {
@@ -42,10 +51,18 @@ public class RequestInfo implements IModel{
     }
 
     public void setSearchDepth(Integer searchDepth) {
-        this.searchDepth = searchDepth;
+        if (searchDepth > 0)
+            this.searchDepth = searchDepth;
+        else
+            throw new IllegalArgumentException();
     }
 
     public Integer getId() { return id; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id) {
+        if (id > 0)
+            this.id = id;
+        else
+            throw new IllegalArgumentException();
+    }
 }

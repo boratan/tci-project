@@ -28,7 +28,7 @@ public class RequestInfoTest {
         Assert.assertNotNull(requestInfo.getSearchDepth());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void RequestIdReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setId(null);
     }
@@ -38,7 +38,7 @@ public class RequestInfoTest {
         requestInfo.setId(-3);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test (expected = NullPointerException.class)
     public void RequestTimeReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setTime(null);
     }
@@ -46,6 +46,36 @@ public class RequestInfoTest {
     @Test (expected = IllegalArgumentException.class)
     public void RequestTimeReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setTime(-3);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void RequestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
+        requestInfo.setUniquePagesExplored(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void RequestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
+        requestInfo.setUniquePagesExplored(-3);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void RequestPagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
+        requestInfo.setPagesExplored(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void RequestPagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
+        requestInfo.setPagesExplored(-3);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void RequestSearchDepthReturnsLegalArgumentExceptionIfSetToNull(){
+        requestInfo.setSearchDepth(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void RequestSearchDepthReturnsLegalArgumentExceptionIfSetToNegative(){
+        requestInfo.setSearchDepth(-3);
     }
 
     @Test
