@@ -3,6 +3,8 @@ package serializers;
 import com.google.gson.Gson;
 import models.RequestInfo;
 
+import java.util.Objects;
+
 public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
     private Gson gson;
 
@@ -21,7 +23,10 @@ public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
      */
     @Override
     public String serializeToJson(RequestInfo object) {
-        return null;
+        if(object != null) {
+            return gson.toJson(object);
+        }
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -31,6 +36,9 @@ public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
      */
     @Override
     public RequestInfo deserializeFromJson(String json) {
-        return null;
+        if(json != null && !json.equals("")) {
+            return gson.fromJson(json, RequestInfo.class);
+        }
+        throw new IllegalArgumentException();
     }
 }
