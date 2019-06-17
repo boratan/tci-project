@@ -1,10 +1,6 @@
 package models;
 
-import com.sun.istack.internal.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Book implements IModel {
     private String name;
@@ -74,7 +70,7 @@ public class Book implements IModel {
     }
 
     public void setYear(Integer year) {
-        if (year > 0)
+        if (year != null && year > 0)
             this.year = year;
         else
             throw new IllegalArgumentException();
@@ -96,7 +92,7 @@ public class Book implements IModel {
 
     public void setisbn(String isbn) {
         String regex = "[0-9]*[-| ][0-9]*";
-        if (isbn.matches(regex) && !isbn.equals(""))
+        if (isbn != null && isbn.matches(regex) && !isbn.equals(""))
             this.isbn = isbn;
         else
             throw new IllegalArgumentException();
