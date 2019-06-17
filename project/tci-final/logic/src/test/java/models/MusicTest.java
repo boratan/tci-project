@@ -205,7 +205,7 @@ public class MusicTest {
     public void musicArtistIsSetAsDesired(){
         //act
         music.setArtist("Music artist");
-        String actual = music.setArtist();
+        String actual = music.getArtist();
 
         //assert
         Assert.assertEquals("Music artist", actual);
