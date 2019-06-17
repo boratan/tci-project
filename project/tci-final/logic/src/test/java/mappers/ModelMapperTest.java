@@ -65,7 +65,6 @@ public class ModelMapperTest {
         row = tbody.appendElement("tr");
         row.appendElement("th").text("ISBN");
         row.appendElement("td").text("isbn");
-
     }
     /**
      * Populated the movieElement with proper html structure.
@@ -147,7 +146,7 @@ public class ModelMapperTest {
         try {
             IModel actual = mapper.mapToModel(bookElement);
             // assert
-            Assert.assertTrue(actual instanceof Book);
+            Assert.assertTrue("The retrieved IModel is not a book.", actual instanceof Book);
         } catch (ScrapedDataDoesNotContainIModelException e) {
             Assert.fail();
         }
@@ -165,7 +164,7 @@ public class ModelMapperTest {
         try {
             IModel actual = mapper.mapToModel(movieElement);
             // assert
-            Assert.assertTrue(actual instanceof Movie);
+            Assert.assertTrue("The retrieved IModel is not a movie.",actual instanceof Movie);
         } catch (ScrapedDataDoesNotContainIModelException e) {
             Assert.fail();
         }
@@ -183,7 +182,7 @@ public class ModelMapperTest {
         try {
             IModel actual = mapper.mapToModel(musicElement);
             // assert
-            Assert.assertTrue(actual instanceof Music);
+            Assert.assertTrue("The retrieved IModel is not music.",actual instanceof Music);
         } catch (ScrapedDataDoesNotContainIModelException e) {
             Assert.fail();
         }
