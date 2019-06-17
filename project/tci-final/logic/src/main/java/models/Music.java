@@ -22,18 +22,29 @@ public class Music implements IModel{
     }
 
     public void setName(String name) {
+        if(name == null) {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
     public String getGenre() { return genre; }
 
-    public void setGenre(String genre) { this.genre = genre; }
+    public void setGenre(String genre) {
+        if(genre == null) {
+            throw new IllegalArgumentException();
+        }
+        this.genre = genre;
+    }
 
     public String getFormat() {
         return format;
     }
 
     public void setFormat(String format) {
+        if(format == null) {
+            throw new IllegalArgumentException();
+        }
         this.format = format;
     }
 
@@ -42,6 +53,9 @@ public class Music implements IModel{
     }
 
     public void setYear(Integer year) {
+        if(year == null) {
+            throw new IllegalArgumentException();
+        }
         this.year = year;
     }
 
@@ -50,6 +64,9 @@ public class Music implements IModel{
     }
 
     public void setArtist(String artist) {
+        if(artist == null) {
+            throw new IllegalArgumentException();
+        }
         this.artist = artist;
     }
 }
