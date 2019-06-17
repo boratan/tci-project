@@ -20,20 +20,20 @@ public class GetAll extends BaseRequest {
         this.movies = new ArrayList<>();
         this.books = new ArrayList<>();
         this.music = new ArrayList<>();
-        if (!models.isEmpty())
-            this.splitListToModels(models);
-        else throw new IllegalArgumentException();
+        this.splitListToModels(models);
     }
 
     private void splitListToModels(Set<IModel> models) {
-        for (IModel m : models) {
-            if (m instanceof Book)
-                this.books.add((Book) m);
-            else if (m instanceof Movie)
-                this.movies.add((Movie) m);
-            else if (m instanceof Music)
-                this.music.add((Music) m);
-        }
+        if (models != null && !models.isEmpty()) {
+            for (IModel m : models) {
+                if (m instanceof Book)
+                    this.books.add((Book) m);
+                else if (m instanceof Movie)
+                    this.movies.add((Movie) m);
+                else if (m instanceof Music)
+                    this.music.add((Music) m);
+            }
+        } else throw new IllegalArgumentException("Set cannot be empty!");
     }
 
     public List<Movie> getMovies() {
