@@ -63,6 +63,10 @@ jacocoTestReport {
     }
 }
 
+test {
+    ignoreFailures = true
+}
+
 jacoco {
     toolVersion = "0.8.3"
     reportsDir = file("$buildDir/jacocoReportDir")
