@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static matchers.IsValidYearMatcher.isValidYearMatcher;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static matchers.MusicMatcher.assertThat;
 
 /**
  * Author: M. Andreeva
@@ -31,7 +33,7 @@ public class MusicTest {
         String name = music.getName();
 
         //assert
-        Assert.assertNotNull(name);
+        assertThat(music).hasName(name);
     }
 
     /**
@@ -44,7 +46,7 @@ public class MusicTest {
         String genre = music.getGenre();
 
         //assert
-        Assert.assertNotNull(genre);
+        assertThat(music).hasGenre(genre);
     }
 
     /**
@@ -57,7 +59,7 @@ public class MusicTest {
         String format = music.getFormat();
 
         //assert
-        Assert.assertNotNull(format);
+        assertThat(music).hasFormat(format);
     }
 
     /**
@@ -83,7 +85,7 @@ public class MusicTest {
         String artist = music.getArtist();
 
         //assert
-        Assert.assertNotNull(artist);
+        assertThat(music).hasArtist(artist);
     }
 
     /**
@@ -196,6 +198,19 @@ public class MusicTest {
 
         //assert
         Assert.assertEquals(Integer.valueOf(1999), actual);
+    }
+
+    /**
+     * The test sets the Year property of SUT and then checks if the one we get is a valid year.
+     */
+    @Test
+    public void movieYearIsValidYear(){
+        //act
+        music.setYear(1999);
+        Integer actual = music.getYear();
+
+        //assert
+        assertThat(actual, isValidYearMatcher());
     }
 
     /**

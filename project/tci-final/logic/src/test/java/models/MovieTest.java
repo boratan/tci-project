@@ -7,6 +7,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static matchers.IsValidYearMatcher.isValidYearMatcher;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static matchers.MovieMatcher.assertThat;
+
 /**
  * Author: M. Andreeva
  */
@@ -37,7 +41,7 @@ public class MovieTest {
         String name = movie.getName();
 
         //assert
-        Assert.assertNotNull(name);
+        assertThat(movie).hasName(name);
     }
 
     /**
@@ -50,7 +54,7 @@ public class MovieTest {
         String genre = movie.getGenre();
 
         //assert
-        Assert.assertNotNull(genre);
+        assertThat(movie).hasGenre(genre);
     }
 
     /**
@@ -63,7 +67,7 @@ public class MovieTest {
         String format = movie.getFormat();
 
         //assert
-        Assert.assertNotNull(format);
+        assertThat(movie).hasFormat(format);
     }
 
     /**
@@ -89,7 +93,7 @@ public class MovieTest {
         String director = movie.getDirector();
 
         //assert
-        Assert.assertNotNull(director);
+        assertThat(movie).hasDirector(director);
     }
 
     /**
@@ -252,6 +256,19 @@ public class MovieTest {
 
         //assert
         Assert.assertEquals(Integer.valueOf(1999), actual);
+    }
+
+    /**
+     * The test sets the Year property of SUT and then checks if the one we get is a valid year.
+     */
+    @Test
+    public void movieYearIsValidYear(){
+        //act
+        movie.setYear(1999);
+        Integer actual = movie.getYear();
+
+        //assert
+        assertThat(actual, isValidYearMatcher());
     }
 
     /**
