@@ -67,6 +67,10 @@ dependencies {
     testCompile 'org.glassfish.jersey.core:jersey-common:2.22.2'
 }
 
+test {
+    ignoreFailures = true
+}
+
 jacoco {
     toolVersion = "0.8.3"
     reportsDir = file("$buildDir/jacocoReportDir")
