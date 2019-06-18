@@ -16,10 +16,10 @@ build:
         - gradle compileJava --info
     cache:
         key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-        - build
-        - .gradle
+        policy: pull
+        paths:
+            - build
+            - .gradle
 
 test:
     stage: test
@@ -29,7 +29,7 @@ test:
         - gradle check
     cache:
         key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-        - build
-        - .gradle
+        policy: pull
+        paths:
+            - build
+            - .gradle
