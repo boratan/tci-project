@@ -18,15 +18,7 @@ public class BaseRequest {
         return timeInMilli;
     }
 
-    public void setTimeInMilli(long timeInMilli) {
-        this.timeInMilli = timeInMilli;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
