@@ -15,9 +15,6 @@ build:
   script:
     - cd project/tci-final/api
     - gradle compileJava 
-    - cd ..
-    - cd logic
-    - gradle compileJava 
   artifacts:
     paths:
       - build
