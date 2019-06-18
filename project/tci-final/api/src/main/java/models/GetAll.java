@@ -24,6 +24,16 @@ public class GetAll extends BaseRequest {
     }
 
     private void splitListToModels(Set<IModel> models) {
+        if (models != null && !models.isEmpty()) {
+            for (IModel m : models) {
+                if (m instanceof Book)
+                    this.books.add((Book) m);
+                else if (m instanceof Movie)
+                    this.movies.add((Movie) m);
+                else if (m instanceof Music)
+                    this.music.add((Music) m);
+            }
+        } else throw new IllegalArgumentException("Set cannot be empty!");
     }
 
     public List<Movie> getMovies() {

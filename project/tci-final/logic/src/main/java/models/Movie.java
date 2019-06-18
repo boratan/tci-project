@@ -13,7 +13,8 @@ public class Movie implements IModel{
 
     public Movie(){}
 
-    public Movie(String name, String genre, String format, Integer year, String director, List<String> writers, List<String> stars){
+    public Movie(String name, String genre, String format, Integer year,
+                 String director, List<String> writers, List<String> stars){
         this.name = name;
         this.genre = genre;
         this.format = format;
