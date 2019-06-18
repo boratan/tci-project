@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Gradle : tci : tci.war">
+    <output-path>$PROJECT_DIR$/api/build/libs</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$/api" />
+    </properties>
+    <root id="archive" name="tci.war">
+      <element id="artifact" artifact-name="Gradle : tci : tci.war (exploded)" />
+    </root>
+  </artifact>
+</component>

@@ -1,39 +1,45 @@
 package serializers;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
+/**
+ * Author: B. Atanasov
+ */
 public class RequestInfoSerializerTest {
+    private RequestInfoSerializer requestInfoSerializer;
 
-    @Test
-    public void afterConstructionGsonObjectCanBeReturned() {
-
+    @Before
+    public void setUp(){
+        requestInfoSerializer = new RequestInfoSerializer();
     }
 
-    @Test
-    public void serializeToJsonReturnsValidString() {
-
-    }
-
-    @Test(expected = InvalidArgumentException.class)
+    /**
+     * Calls the serializeToJson with a null as an object parameter and verifies that in that case an
+     * IllegalArgumentException is thrown.
+     */
+    @Test(expected = IllegalArgumentException.class)
     public void serializeToJsonReturnsInvalidArgumentExceptionIfRequestInfoIsNull() {
-
+        requestInfoSerializer.serializeToJson(null);
     }
 
-    @Test
-    public void deserializeFromJsonReturnsRequestInfoThatIsNotNull() {
-
-    }
-
-    @Test(expected = InvalidArgumentException.class)
+    /**
+     * Calls the deserializeFromJson with a null as an jsonString parameter and verifies that in that case an
+     * IllegalArgumentException is thrown.
+     */
+    @Test(expected = IllegalArgumentException.class)
     public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsNull() {
+        requestInfoSerializer.deserializeFromJson(null);
 
     }
 
-    @Test(expected = InvalidArgumentException.class)
+    /**
+     * Calls the deserializeFromJson with an empty string as an jsonString parameter and verifies that in that case an
+     * IllegalArgumentException is thrown.
+     */
+    @Test(expected = IllegalArgumentException.class)
     public void deserializeFromJsonReturnsInvalidArgumentExceptionIfStringIsEmpty() {
-
+        String json = "";
+        requestInfoSerializer.deserializeFromJson(json);
     }
 }

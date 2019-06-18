@@ -6,6 +6,10 @@
       <module name="api_test" target="1.8" />
       <module name="logic_main" target="1.8" />
       <module name="logic_test" target="1.8" />
+      <module name="tci.api.main" target="1.8" />
+      <module name="tci.api.test" target="1.8" />
+      <module name="tci.logic.main" target="1.8" />
+      <module name="tci.logic.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

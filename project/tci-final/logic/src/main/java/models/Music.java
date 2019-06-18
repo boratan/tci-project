@@ -4,13 +4,12 @@ public class Music implements IModel{
     private String name;
     private String genre;
     private String format;
-    private String year;
+    private Integer year;
     private String artist;
 
     public Music(){}
 
-    public Music(String name, String genre, String format, String year, String artist){
-
+    public Music(String name, String genre, String format, Integer year, String artist){
         this.name = name;
         this.genre = genre;
         this.format = format;
@@ -23,15 +22,19 @@ public class Music implements IModel{
     }
 
     public void setName(String name) {
+        if(name == null) {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
-    public String getGenre() {
-        return genre;
-    }
+    public String getGenre() { return genre; }
 
     public void setGenre(String genre) {
-        this.name = genre;
+        if(genre == null) {
+            throw new IllegalArgumentException();
+        }
+        this.genre = genre;
     }
 
     public String getFormat() {
@@ -39,14 +42,20 @@ public class Music implements IModel{
     }
 
     public void setFormat(String format) {
+        if(format == null) {
+            throw new IllegalArgumentException();
+        }
         this.format = format;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
+        if(year == null) {
+            throw new IllegalArgumentException();
+        }
         this.year = year;
     }
 
@@ -55,6 +64,9 @@ public class Music implements IModel{
     }
 
     public void setArtist(String artist) {
+        if(artist == null) {
+            throw new IllegalArgumentException();
+        }
         this.artist = artist;
     }
 }
