@@ -1,0 +1,52 @@
+image: java:8-jdk
+
+stages:
+    - checkstyle
+	- build
+	- test
+    - deploy
+
+before_script:
+    -export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+    - gradle/wrapper
+    - gradle/caches
+    
+checkstyle:
+    stage: checkstyle
+    script:
+        - echo "Checking style"
+    
+build:
+    stage: build
+    dependencies:
+        - checkstyle
+    script:
+		- echo "Building"
+        - ./gradlew assemble
+    artifacts:
+        paths:
+            - builds/libs/*.jar
+        expire_in: 1 week
+    only:
+        - dev-ci
+		
+test:
+    stage: test
+    dependencies:
+        - build
+    script:
+        - echo "Testing"
+        - ./gradlew check
+        
+deploy:
+    stage: deploy
+    dependencies:
+        - test
+    script:
+        - echo "Deploying"
+        - ./deploy
+
+after_script:
+    - echo "End CI"
