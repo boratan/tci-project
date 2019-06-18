@@ -1,0 +1,3 @@
+rootProject.name = 'api'
+include ':logic'
+project(':logic').projectDir = new File(settingsDir,'../logic')
