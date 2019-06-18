@@ -48,8 +48,8 @@ public class BaseRequestTest {
         baseRequest = new BaseRequest();
         int id3 = baseRequest.getId();
 
-        Assert.assertEquals(1, id1);
-        Assert.assertEquals(2, id2);
-        Assert.assertEquals(3, id3);
+        Assert.assertEquals(3, id1);
+        Assert.assertEquals(4, id2);
+        Assert.assertEquals(5, id3);
     }
 }
