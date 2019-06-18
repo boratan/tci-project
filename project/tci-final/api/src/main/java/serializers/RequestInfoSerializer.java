@@ -1,7 +1,7 @@
 package serializers;
 
 import com.google.gson.Gson;
-import models.RequestInfo;;
+import models.RequestInfo;
 
 public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
     private Gson gson;

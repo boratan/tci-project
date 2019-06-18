@@ -58,9 +58,8 @@ public class ApiMain {
         BaseRequest baseRequest = new BaseRequest();
         RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
         writeRequestInfoToFile(request);
-        String requestInfo = requestInfoSerializer.serializeToJson(request);
         String models = getAllSerializer.serializeToJson(new GetAll(result.getValue()));
-        return Response.ok(requestInfo + models).type(MediaType.APPLICATION_JSON).build();
+        return Response.ok(models).type(MediaType.APPLICATION_JSON).build();
     }
 
     /**
@@ -88,9 +87,8 @@ public class ApiMain {
         BaseRequest baseRequest = new BaseRequest();
         RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
         writeRequestInfoToFile(request);
-        String requestInfo = requestInfoSerializer.serializeToJson(request);
         String model = getOneSerializer.serializeToJson(new GetOne(result.getValue()));
-        return Response.ok(requestInfo + model).build();
+        return Response.ok(model).build();
     }
 
     /**

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'war'
 }
 
 group 'tci'
@@ -19,6 +20,10 @@ idea {
         downloadJavadoc = true
         downloadSources = false
     }
+}
+
+war {
+    archiveName = 'tci.war'
 }
 
 dependencies {
