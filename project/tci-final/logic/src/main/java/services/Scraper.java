@@ -1,9 +1,12 @@
 package services;
 
+import helper.ScrapedDataDoesNotContainIModelException;
+import mappers.ModelMapper;
 import models.EnrichedUrl;
 import models.IModel;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.jsoup.nodes.Element;
 
 import java.util.concurrent.Callable;
 
@@ -13,6 +16,8 @@ import java.util.concurrent.Callable;
 public class Scraper implements Callable<IModel> {
 
     private final EnrichedUrl enrichedUrl;
+    private Document doc;
+    private ModelMapper mapper;
 
     /**
      * Constructor of Scraper class.
@@ -21,25 +26,31 @@ public class Scraper implements Callable<IModel> {
     public Scraper(EnrichedUrl url)
     {
         this.enrichedUrl = url;
+        this.mapper = new ModelMapper();
     }
 
     /**
-     * Calls all methods from the class and returns(if possible) a ready IModel from the provided url
+     * Calls all methods from the class and returns(if possible) a ready IModel from the provided url.
      */
     @Override
     public IModel call() throws Exception {
-        throw new NotImplementedException();
+        String url = enrichedUrl.getUrl().toString();
+        doc = Jsoup.connect(url).get();
+        return this.getIModel(doc);
     }
 
     /**
-     * Gets the data required for mapping the model and adds the mapped model to the repository of found models.
-     * @param doc HTML of the page that is being scraped.
+     * Gets the data required for mapping the model and returns the mapped model.
      */
     private IModel getIModel(Document doc) {
-        throw new NotImplementedException();
-    }
-
-    public EnrichedUrl getEnrichedUrl() {
-        return enrichedUrl;
+        try {
+            Element el = doc.getElementsByClass("media-details").first();
+            if(el != null) {
+                return mapper.mapToModel(el);
+            }
+            return null;
+        } catch (ScrapedDataDoesNotContainIModelException e) {
+            return null;
+        }
     }
 }
