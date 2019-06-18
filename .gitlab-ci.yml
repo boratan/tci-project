@@ -10,11 +10,14 @@ variables:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-
 build:
   stage: build
   script:
-    gradle --build-cache assemble
+    - cd project/tci-final/api
+    - gradle --build-cache assemble
+    - cd ..
+    - cd logic
+    - gradle --build-cache assemble
   artifacts:
     paths:
       - build/libs/*.jar
