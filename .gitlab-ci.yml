@@ -8,7 +8,12 @@ before_script:
   
 build:
     stage: build
-    script: gradle --build-cache assemble
+    script:
+        - cd project/tci-final/api
+        - gradle compileJava --info
+        - cd ..
+        - cd logic
+        - gradle compileJava --info
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: pull
@@ -18,7 +23,10 @@ build:
 
 test:
     stage: test
-    script: gradle check
+    dependencies:
+        - build
+    script:
+        - gradle check
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: pull
