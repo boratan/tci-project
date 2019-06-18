@@ -9,7 +9,11 @@ before_script:
 build:
     stage: build
     script:
-        -gradle --build-cache assemble
+        - cd project/tci-final/api
+        - gradle compileJava --info
+        - cd ..
+        - cd logic
+        - gradle compileJava --info
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
