@@ -152,7 +152,7 @@ public class ApiMainTest {
         Response result = apiMain.getAll("http://www.example.com");
 
         Assert.assertEquals(Response.Status.OK.getStatusCode(), result.getStatus());
-        Assert.assertEquals(requestInfoJson + allJson, result.getEntity().toString());
+        Assert.assertEquals(allJson, result.getEntity().toString());
     }
 
     /**
@@ -206,7 +206,7 @@ public class ApiMainTest {
         Response result = apiMain.getOne("http://www.example.com", "", "");
 
         Assert.assertEquals(Response.Status.OK.getStatusCode(), result.getStatus());
-        Assert.assertEquals(requestInfoJson + oneJson, result.getEntity().toString());
+        Assert.assertEquals(oneJson, result.getEntity().toString());
     }
 
     /**
