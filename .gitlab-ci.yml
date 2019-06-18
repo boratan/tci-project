@@ -10,10 +10,10 @@ build:
     stage: build
     script:
         - cd project/tci-final/api
-        - gradle build --info
+        - gradle build --stacktrace
         - cd ..
         - cd logic
-        - gradle build --info
+        - gradle build --stacktrace
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: pull
