@@ -49,14 +49,12 @@ public class BookTest {
 
     @Before
     public void setUp(){
-        List<String> authors = new ArrayList<>();
-        authors.add("Douglas Adams");
         book = new Book(
                 "The Hitchhiker's Guide to the Galaxy",
                 "Science Fiction",
                 "Hardcover",
                 1978,
-                    authors,
+                "Douglas Adams",
                 "Hermes",
                 "978-0201485669"
         );
@@ -206,7 +204,7 @@ public class BookTest {
     @Test
     public void BookAuthorsThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
-        List<String> testAuthors = Collections.emptyList();
+        String testAuthors = "";
         book.setAuthors(testAuthors);
     }
 

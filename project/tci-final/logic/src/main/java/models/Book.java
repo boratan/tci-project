@@ -7,7 +7,7 @@ public class Book implements IModel {
     private String genre;
     private String format;
     private Integer year;
-    private List<String> authors;
+    private String authors;
     private String publisher;
     private String isbn;
 
@@ -15,7 +15,7 @@ public class Book implements IModel {
     }
 
     public Book(String name, String genre, String format, Integer year,
-                List<String> authors, String publisher, String isbn)
+                String authors, String publisher, String isbn)
     {
         this.setName(name);
         this.setGenre(genre);
@@ -40,7 +40,7 @@ public class Book implements IModel {
         return year;
     }
 
-    public List<String> getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
@@ -76,8 +76,8 @@ public class Book implements IModel {
             throw new IllegalArgumentException();
     }
 
-    public void setAuthors(List<String> authors) {
-        if (authors != null && !authors.isEmpty())
+    public void setAuthors(String authors) {
+        if (authors != null && authors != "")
             this.authors = authors;
         else
             throw new IllegalArgumentException();

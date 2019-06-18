@@ -95,8 +95,6 @@ public class Crawler {
                     for (URL url : urls) {
                         if (url.getHost().equals(getHeadURL().getHost())) {
 
-                            //System.out.println("Crawling URL: " + url + " at depth " + this.depth);
-
                             //Convert url to EnrichedUrl and start a scraping task on it
                             addAndScrapeURL(url, type, argument);
 
