@@ -6,10 +6,6 @@ import models.*;
 public class GetAllSerializer implements IGenericSerializer<GetAll> {
     private Gson gson;
 
-    public Gson getGson() {
-        return gson;
-    }
-
     public GetAllSerializer() {
         gson = new Gson();
     }
@@ -20,7 +16,7 @@ public class GetAllSerializer implements IGenericSerializer<GetAll> {
             throw new IllegalArgumentException();
         else{
             String jsonString;
-            jsonString = this.getGson().toJson(object);
+            jsonString = this.gson.toJson(object);
             return jsonString;
         }
     }
@@ -30,7 +26,7 @@ public class GetAllSerializer implements IGenericSerializer<GetAll> {
         if(json == null || json.equals("")) throw new IllegalArgumentException();
         else{
             GetAll getAll;
-            getAll = this.getGson().fromJson(json, GetAll.class);
+            getAll = this.gson.fromJson(json, GetAll.class);
             return  getAll;
         }
     }
