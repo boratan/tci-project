@@ -23,7 +23,7 @@ build:
     dependencies:
         - checkstyle
     script:
-		- echo "Building"
+        - echo "Building"
         - ./gradlew assemble
     artifacts:
         paths:
