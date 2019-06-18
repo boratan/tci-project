@@ -6,7 +6,6 @@ public class EnrichedUrl {
     private URL url;
     private Integer depth;
 
-
     public EnrichedUrl(URL url, Integer depth) {
         this.url = url;
         this.depth = depth;
@@ -17,6 +16,9 @@ public class EnrichedUrl {
     }
 
     public void setUrl(URL url) {
+        if(url == null) {
+            throw new IllegalArgumentException("URL cannot be null!");
+        }
         this.url = url;
     }
 
@@ -25,6 +27,9 @@ public class EnrichedUrl {
     }
 
     public void setDepth(Integer depth) {
+        if(depth == null) {
+            throw new IllegalArgumentException("Search depth cannot be null!");
+        }
         this.depth = depth;
     }
 }
