@@ -3,6 +3,9 @@ package serializers;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Author: B. Atanasov
+ */
 public class RequestInfoSerializerTest {
     private RequestInfoSerializer requestInfoSerializer;
 

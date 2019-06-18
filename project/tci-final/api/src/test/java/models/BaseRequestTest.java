@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Author: B. Atanasov
+ */
 public class BaseRequestTest {
     private BaseRequest baseRequest;
 
