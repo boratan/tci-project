@@ -73,9 +73,3 @@ api/*.iml
 .gradle/*
 logic/.gradle/*
 api/.gradle/*
-
-
-api/.gradle/4.8/fileHashes/fileHashes.bin
-api/.gradle/4.8/fileHashes/fileHashes.lock
-logic/.gradle/4.8/fileHashes/fileHashes.bin
-logic/.gradle/4.8/fileHashes/fileHashes.lock
