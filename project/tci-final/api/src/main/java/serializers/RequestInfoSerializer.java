@@ -10,10 +10,6 @@ public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
         gson = new Gson();
     }
 
-    public Gson getGson() {
-        return gson;
-    }
-
     /**
      * Serializes the RequestInfo model to JSON format.
      * @param object
@@ -21,7 +17,10 @@ public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
      */
     @Override
     public String serializeToJson(RequestInfo object) {
-        return null;
+        if(object != null) {
+            return gson.toJson(object);
+        }
+        throw new IllegalArgumentException();
     }
 
     /**
@@ -31,6 +30,9 @@ public class RequestInfoSerializer implements IGenericSerializer<RequestInfo> {
      */
     @Override
     public RequestInfo deserializeFromJson(String json) {
-        return null;
+        if(json != null && !json.equals("")) {
+            return gson.fromJson(json, RequestInfo.class);
+        }
+        throw new IllegalArgumentException();
     }
 }

@@ -14,11 +14,11 @@ public class BaseRequest {
         timeInMilli = date.getTime();
     }
 
-    public int getId() {
-        return id;
-    }
-
     public long getTimeInMilli() {
         return timeInMilli;
+    }
+
+    public int getId() {
+        return id;
     }
 }
