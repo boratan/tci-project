@@ -9,13 +9,11 @@ before_script:
 build:
     stage: build
     script:
-        - cd project
-        - cd tci-final
-        - cd api
-        - gradle compileJava --info
+        - cd project/tci-final/api
+        - gradle compileJava --stacktrace
         - cd ..
         - cd logic
-        - gradle compileJava --info
+        - gradle compileJava --stacktrace
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: pull
