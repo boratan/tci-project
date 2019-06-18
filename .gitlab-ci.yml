@@ -9,7 +9,9 @@ before_script:
 build:
     stage: build
     script:
-        - cd project/tci-final/api
+        - cd project
+        - cd tci-final
+        - cd api
         - gradle compileJava --info
         - cd ..
         - cd logic
