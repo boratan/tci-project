@@ -29,19 +29,4 @@ public class RequestInfoTest {
 
     @Test
     public void RequestSearchDepthReturnedIsInvoked(){}
-
-    @Test
-    public void RequestIdIsSetAsDesired(){}
-
-    @Test
-    public void RequestTimeIsSetAsDesired(){}
-
-    @Test
-    public void RequestPagesExploredAreSetAsDesired(){}
-
-    @Test
-    public void RequestUniquePagesExploredAreSetAsDesired(){}
-
-    @Test
-    public void RequestSearchDepthIsSetAsDesired(){}
 }
