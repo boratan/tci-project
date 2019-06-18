@@ -64,6 +64,7 @@ public class ThreadServiceTest {
         EnrichedUrl url = mock(EnrichedUrl.class);
 
         threadService.scrape(url);
+        threadService.shutdownPool();
 
         Assert.assertEquals(1, threadService.getTasks().size());
     }
@@ -76,6 +77,7 @@ public class ThreadServiceTest {
         threadService.scrape(url);
         threadService.scrape(url);
         threadService.scrape(url);
+        threadService.shutdownPool();
 
         Assert.assertEquals(3, threadService.getTasks().size());
     }
@@ -93,6 +95,7 @@ public class ThreadServiceTest {
         PowerMockito.doReturn(book).when(threadService, "getFromTask", tasks.toArray()[1]);
         PowerMockito.doReturn(music).when(threadService, "getFromTask", tasks.toArray()[2]);
         Set<IModel> result = threadService.checkFutureTasks();
+        threadService.shutdownPool();
 
         Assert.assertEquals(3, result.size());
         Assert.assertTrue(result.contains(movie));
@@ -113,9 +116,28 @@ public class ThreadServiceTest {
         PowerMockito.doReturn(book).when(threadService, "getFromTask", tasks.toArray()[1]);
         PowerMockito.doReturn(music).when(threadService, "getFromTask", tasks.toArray()[2]);
         Set<IModel> result = threadService.checkFutureTasksForSpecificItem("movie", "The Lord of the Rings: The Fellowship of the Ring");
+        threadService.shutdownPool();
 
         Assert.assertEquals(1, result.size());
         Assert.assertEquals(movie, result.toArray()[0]);
+    }
+
+    @Test
+    public void CheckFutureTasksForSpecificItemMethodWhenDetailsIsNotFound() throws Exception {
+        threadService = PowerMockito.spy(new ThreadService());
+        EnrichedUrl url = mock(EnrichedUrl.class);
+
+        threadService.scrape(url);
+        threadService.scrape(url);
+        threadService.scrape(url);
+        Set<FutureTask<IModel>> tasks = threadService.getTasks();
+        PowerMockito.doReturn(movie).when(threadService, "getFromTask", tasks.toArray()[0]);
+        PowerMockito.doReturn(book).when(threadService, "getFromTask", tasks.toArray()[1]);
+        PowerMockito.doReturn(music).when(threadService, "getFromTask", tasks.toArray()[2]);
+        Set<IModel> result = threadService.checkFutureTasksForSpecificItem("movie", "asdada");
+        threadService.shutdownPool();
+
+        Assert.assertEquals(0, result.size());
     }
 
     @Test
@@ -127,6 +149,7 @@ public class ThreadServiceTest {
         Set<FutureTask<IModel>> tasks = threadService.getTasks();
         PowerMockito.doReturn(movie).when(threadService, "getFromTask", tasks.toArray()[0]);
         threadService.checkFutureTasksForSpecificItem("movie", "Drama");
+        threadService.shutdownPool();
 
         PowerMockito.verifyPrivate(threadService)
                 .invoke("checkIfAnyFieldInAModelIsEqualToArgumentAndType", new Object[]{movie, "Drama", "movie"});
@@ -141,6 +164,7 @@ public class ThreadServiceTest {
         Set<FutureTask<IModel>> tasks = threadService.getTasks();
         PowerMockito.doReturn(movie).when(threadService, "getFromTask", tasks.toArray()[0]);
         threadService.checkFutureTasksForSpecificItem(null, "Drama");
+        threadService.shutdownPool();
 
         PowerMockito.verifyPrivate(threadService)
                 .invoke("checkIfAnyFieldInAModelIsEqualToArgument", new Object[]{movie, "Drama"});
@@ -155,6 +179,7 @@ public class ThreadServiceTest {
         Set<FutureTask<IModel>> tasks = threadService.getTasks();
         PowerMockito.doReturn(movie).when(threadService, "getFromTask", tasks.toArray()[0]);
         threadService.checkFutureTasksForSpecificItem("movie", null);
+        threadService.shutdownPool();
 
         PowerMockito.verifyPrivate(threadService)
                 .invoke("checkIfAnyFieldInAModelIsEqualToType", new Object[]{movie, "movie"});
