@@ -47,25 +47,4 @@ public class MovieTest {
 
     @Test
     public void MovieStarsThrowsExceptionIfTheGivenValueIsInvalid(){}
-
-    @Test
-    public void MovieNameIsSetAsDesired(){}
-
-    @Test
-    public void MovieGenreIsSetAsDesired(){}
-
-    @Test
-    public void MovieFormatIsSetAsDesired(){}
-
-    @Test
-    public void MovieYearIsSetAsDesired(){}
-
-    @Test
-    public void MovieDirectorIsSetAsDesired(){}
-
-    @Test
-    public void MovieWritersAreSetAsDesired(){}
-
-    @Test
-    public void MovieStarsAreSetAsDesired(){}
 }

@@ -44,16 +44,4 @@ public class MusicTest {
 
     @Test
     public void MusicArtistIsNotNullWhenSet(){}
-
-    @Test
-    public void MusicNameIsSetAsDesired(){}
-
-    @Test
-    public void MusicFormatIsSetAsDesired(){}
-
-    @Test
-    public void MusicYearIsSetAsDesired(){}
-
-    @Test
-    public void MusicDirectorIsSetAsDesired(){}
 }
