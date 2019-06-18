@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'jacoco'
+    id 'checkstyle'
 }
 
 group 'tci'
@@ -12,10 +13,6 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
-}
-
-jar {
-    archiveName = "logic.jar"
 }
 
 // add for automatically downloading javadoc while developing (for ctrl-Q)

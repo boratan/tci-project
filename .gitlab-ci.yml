@@ -1,0 +1,82 @@
+job:
+  tags:
+    - Maria
+    - tci
+
+stages:
+    - build
+    - test
+    - deploy
+        
+build:
+  stage: build
+  script: 
+  - cd project/tci-final/logic
+  - gradlew.bat build --info
+  - cd ../api
+  - gradlew.bat build --info
+  allow_failure: true
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+      
+test:
+  stage: test
+  script: 
+  - cd project/tci-final/logic
+  - gradlew.bat test --info
+  - gradlew.bat jacocoTestReport --info
+  - cd ../api
+  - gradlew.bat test --info
+  - gradlew.bat jacocoTestReport --info
+  - gradlew.bat jmRun
+  - gradlew.bat jmReport
+  allow_failure: true
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  artifacts:
+    when: always
+    paths:
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml
+        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report
+  
+pages:
+    stage: deploy
+    dependencies:
+    - test
+    script:
+    - mkdir .public
+    - mkdir .public/logic
+    - mkdir .public/logic_jacoco
+    - mkdir .public/logic_stylecheck
+    - cp -r project/tci-final/logic/build/reports/tests/test/* .public/logic
+    - cp -r project/tci-final/logic/build/jacocoHtml/* .public/logic_jacoco
+    - mkdir .public/api
+    - mkdir .public/api_jacoco
+    - mkdir .public/api_stylecheck
+    - cp -r project/tci-final/api/build/reports/tests/test/* .public/api
+    - cp -r project/tci-final/api/build/jacocoHtml/* .public/api_jacoco
+    - cp -r project/tci-final/api/build/jmeter-report/* .public/jmeter-report
+    - mv .public public
+    - cd project/tci-final/api
+    - gradlew.bat war
+    - ../scripts/deployWar.ps1
+    allow_failure: true
+    artifacts:
+        when: always
+        paths:
+        - public
+    only:
+    - dev-ci
