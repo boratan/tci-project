@@ -8,8 +8,7 @@ before_script:
   
 build:
     stage: build
-    script: 
-        -echo "Building"
+    script:
         -gradle --build-cache assemble
     cache:
         key: "$CI_COMMIT_REF_NAME"
@@ -22,8 +21,7 @@ test:
     stage: test
     dependencies:
         - build
-    script: 
-        - echo "Testing"
+    script:
         - gradle check
     cache:
         key: "$CI_COMMIT_REF_NAME"
