@@ -2,11 +2,8 @@ plugins {
     id 'java'
     id 'idea'
     id 'war'
-<<<<<<< dev-veselin
-=======
     id "net.foragerr.jmeter" version "1.0.3-2.13"
     id 'jacoco'
->>>>>>> included jacoco in build gradle for code coverage
 }
 
 group 'tci'
