@@ -20,7 +20,7 @@ build:
     - gradle --build-cache assemble
   artifacts:
     paths:
-      - build/libs/*.jar
+      - build/libs/*.war
 
 test:
   stage: test
