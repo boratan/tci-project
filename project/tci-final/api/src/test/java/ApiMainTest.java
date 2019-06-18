@@ -2,7 +2,13 @@ import javafx.util.Pair;
 import models.*;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.rules.Timeout;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -40,6 +46,34 @@ public class ApiMainTest {
     @Mock RequestInfoSerializer requestInfoSerializer;
     @Mock GetAllSerializer getAllSerializer;
     @Mock GetOneSerializer getOneSerializer;
+
+    private String testLog = "";
+    @Rule
+    public final TestRule watchman = new TestWatcher() {
+        @Override
+        protected void starting(Description description) {
+            testLog += String.format("Test %s started\n", description);
+        }
+
+        @Override
+        protected void succeeded(Description description) {
+            testLog += String.format("Test %s succeeded", description);
+        }
+
+        @Override
+        protected void failed(Throwable e, Description description) {
+            testLog += String.format("Test %s failed", description);
+        }
+
+        @Override
+        protected void finished(Description description) {
+            System.out.println(testLog);
+        }
+    };
+
+    @Rule
+    public TestRule globalTimeout = Timeout.seconds(7);
+
 
     @Before
     public void setUp() throws IllegalAccessException{
