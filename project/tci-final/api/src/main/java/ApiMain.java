@@ -1,7 +1,5 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonReader;
 import javafx.util.Pair;
 import models.*;
 import serializers.GetAllSerializer;
@@ -136,6 +134,12 @@ public class ApiMain {
         return gson.toJson(json);
     }
 
+    /**
+     * Adds the id and the time to a RequestInfo form a BaseRequest.
+     * @param baseRequest The object containing the id and time.
+     * @param requestInfo The object that is modified.
+     * @return A RequestInfo with set id and time.
+     */
     private RequestInfo makeOfficialRequest(BaseRequest baseRequest, RequestInfo requestInfo){
         requestInfo.setId(baseRequest.getId());
         requestInfo.setTime((int) baseRequest.getTimeInMilli());

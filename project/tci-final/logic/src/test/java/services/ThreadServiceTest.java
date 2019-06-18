@@ -17,6 +17,9 @@ import java.util.concurrent.FutureTask;
 
 import static org.mockito.Mockito.mock;
 
+/**
+ * Author: B. Atanasov
+ */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ThreadService.class)
 public class ThreadServiceTest {
@@ -55,6 +58,9 @@ public class ThreadServiceTest {
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * Creates the static content needed for all the tests.
+     */
     @BeforeClass
     public static void setUp(){
         movie = new Movie(
@@ -84,6 +90,10 @@ public class ThreadServiceTest {
         );
     }
 
+    /**
+     * Creates a TheadService and calls the scrape method with a null as a url parameter, which throws an
+     * IllegalArgumentException.
+     */
     @Test
     public void CheckThatScrapeMethodThrowsExceptionWhenUrlIsNull() {
         threadService = new ThreadService();
@@ -92,6 +102,10 @@ public class ThreadServiceTest {
         threadService.scrape(null);
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method with the URL as a url parameter.
+     * Shows that there is exactly one task created.
+     */
     @Test
     public void CheckThatScrapeMethodCreatesFutureTasksWhenUrlIsNotEmpty() {
         threadService = new ThreadService();
@@ -103,6 +117,10 @@ public class ThreadServiceTest {
         Assert.assertEquals(1, threadService.getTasks().size());
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method 3 times with the URL as a url parameter.
+     * Shows that there is exactly 3 task created.
+     */
     @Test
     public void CheckThatScrapeMethodStartsExecutesFutureTasksForEachUrlOf3() {
         threadService = new ThreadService();
@@ -116,6 +134,11 @@ public class ThreadServiceTest {
         Assert.assertEquals(3, threadService.getTasks().size());
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method 3 times with the URL as a url parameter.
+     * The results of the tasks created in the ThreadService are mocked and the checkFutureTasks method is called
+     * to show that all of the mocked models are returned.
+     */
     @Test
     public void CheckFutureTasksMethodWhenTypeAndDetailsParametersAreNullReturnsListOfAllScrapedModels() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());
@@ -137,6 +160,11 @@ public class ThreadServiceTest {
         Assert.assertTrue(result.contains(music));
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method 3 times with the URL as a url parameter.
+     * The results of the tasks created in the ThreadService are mocked and the checkFutureTasksForSpecificItem method
+     * is called with parameters that point to a specific item to show that that specific item will be returned.
+     */
     @Test
     public void CheckFutureTasksForSpecificItemMethodWhenThereAreTypeAndDetailsReturnsSingleModel() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());
@@ -149,13 +177,19 @@ public class ThreadServiceTest {
         PowerMockito.doReturn(movie).when(threadService, "getFromTask", tasks.toArray()[0]);
         PowerMockito.doReturn(book).when(threadService, "getFromTask", tasks.toArray()[1]);
         PowerMockito.doReturn(music).when(threadService, "getFromTask", tasks.toArray()[2]);
-        Set<IModel> result = threadService.checkFutureTasksForSpecificItem("movie", "The Lord of the Rings: The Fellowship of the Ring");
+        Set<IModel> result = threadService
+                .checkFutureTasksForSpecificItem("movie", "The Lord of the Rings: The Fellowship of the Ring");
         threadService.shutdownPool();
 
         Assert.assertEquals(1, result.size());
         Assert.assertEquals(movie, result.toArray()[0]);
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method 3 times with the URL as a url parameter.
+     * The results of the tasks created in the ThreadService are mocked and the checkFutureTasksForSpecificItem method
+     * is called with a detail parameter that is not contained in any model to show that no models will be returned.
+     */
     @Test
     public void CheckFutureTasksForSpecificItemMethodWhenDetailsIsNotFound() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());
@@ -174,6 +208,12 @@ public class ThreadServiceTest {
         Assert.assertEquals(0, result.size());
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method with the URL as a url parameter.
+     * The result of the task created in the ThreadService is mocked and the checkFutureTasksForSpecificItem method
+     * is called to check that checkIfAnyFieldInAModelIsEqualToArgumentAndType method is invoked when both
+     * type and details parameters are not null.
+     */
     @Test
     public void InvokedCheckIfAnyFieldInAModelIsEqualToArgumentWhenTypeAndDetailsParametersAreNotNull() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());
@@ -189,8 +229,14 @@ public class ThreadServiceTest {
                 .invoke("checkIfAnyFieldInAModelIsEqualToArgumentAndType", new Object[]{movie, "Drama", "movie"});
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method with the URL as a url parameter.
+     * The result of the task created in the ThreadService is mocked and the checkFutureTasksForSpecificItem method
+     * is called to check that checkIfAnyFieldInAModelIsEqualToArgument method is invoked when details
+     * parameter is not null but type parameter is null.
+     */
     @Test
-    public void InvokedCheckIfAnyFieldInAModelIsEqualToArgumentWhenDetailsParameterIsNotNull() throws Exception {
+    public void InvokedCheckIfAnyFieldInAModelIsEqualToArgumentWhenOnlyDetailsParameterIsNotNull() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());
         EnrichedUrl url = mock(EnrichedUrl.class);
 
@@ -204,6 +250,12 @@ public class ThreadServiceTest {
                 .invoke("checkIfAnyFieldInAModelIsEqualToArgument", new Object[]{movie, "Drama"});
     }
 
+    /**
+     * Creates a TheadService and a mocked URL and calls the scrape method with the URL as a url parameter.
+     * The result of the task created in the ThreadService is mocked and the checkFutureTasksForSpecificItem method
+     * is called to check that checkIfAnyFieldInAModelIsEqualToType method is invoked when details
+     * parameter is null but type parameter is not null.
+     */
     @Test
     public void InvokedCheckIfAnyFieldInAModelIsEqualToTypeWhenTypeParameterIsNotNull() throws Exception {
         threadService = PowerMockito.spy(new ThreadService());

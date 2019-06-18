@@ -1,10 +1,6 @@
 import javafx.util.Pair;
 import models.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.*;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.rules.Timeout;
@@ -27,20 +23,23 @@ import java.util.HashSet;
 import java.util.Set;
 import static org.mockito.ArgumentMatchers.any;
 
+/**
+ * Author: B. Atanasov
+ */
 @RunWith(PowerMockRunner.class)
 @PowerMockIgnore("javax.net.ssl.*")
 @PrepareForTest(ApiMain.class)
 public class ApiMainTest {
     private ApiMain apiMain;
-    private Movie movie;
-    private Book book;
-    private Music music;
-    private RequestInfo requestInfo;
+    private static Movie movie;
+    private static Book book;
+    private static Music music;
+    private static RequestInfo requestInfo;
     private Set<IModel> modelSetAll;
     private Set<IModel> modelSetOne;
-    private String requestInfoJson;
-    private String allJson;
-    private String oneJson;
+    private static String requestInfoJson;
+    private static String allJson;
+    private static String oneJson;
 
     @Mock LogicMain businessLogic;
     @Mock RequestInfoSerializer requestInfoSerializer;
@@ -74,12 +73,11 @@ public class ApiMainTest {
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
-
-    @Before
-    public void setUp() throws IllegalAccessException{
-        apiMain = new ApiMain();
-        modelSetAll = new HashSet<>();
-        modelSetOne = new HashSet<>();
+    /**
+     * Creates the static content needed for all the tests.
+     */
+    @BeforeClass
+    public static void setStatic(){
         requestInfoJson = "{\"id\":1,\"time\":\"2s\",\"pagesExplored\":10,\"uniquePagesExplored\":5,\"searchDepth\":2}";
         oneJson = "{\"name\":\"Clasical\",\"format\":\"CD\",\"year\":2008,\"artist\":\"Ludwig van Beethoven\"}";
         allJson = "{\"movies\":[{\"name\":\"The Lord of the Rings: The Fellowship of the Ring\",\"genre\":\"Drama\"," +
@@ -116,6 +114,18 @@ public class ApiMainTest {
         );
 
         requestInfo = new RequestInfo(10, 5, 2);
+    }
+
+    /**
+     * Creates all objects that need to be recreated for each test, mocks the functionality of the related classed and
+     * replaces the fields in the main class with mocked once.
+     * @throws IllegalAccessException is required for using PowerMock to switch the fields in a class.
+     */
+    @Before
+    public void setUp() throws IllegalAccessException{
+        apiMain = new ApiMain();
+        modelSetAll = new HashSet<>();
+        modelSetOne = new HashSet<>();
 
         modelSetAll.add(movie);
         modelSetAll.add(book);
@@ -131,8 +141,12 @@ public class ApiMainTest {
         MemberModifier.field(ApiMain.class, "requestInfoSerializer").set(apiMain, requestInfoSerializer);
         MemberModifier.field(ApiMain.class, "getAllSerializer").set(apiMain, getAllSerializer);
         MemberModifier.field(ApiMain.class, "getOneSerializer").set(apiMain, getOneSerializer);
+        MemberModifier.field(ApiMain.class, "fileName").set(apiMain, "../test.json");
     }
 
+    /**
+     * Calls the getAll method and tests the happy path with the static content.
+     */
     @Test
     public void getAllRequestsResponseContentAsExpected() {
         Response result = apiMain.getAll("http://www.example.com");
@@ -141,6 +155,9 @@ public class ApiMainTest {
         Assert.assertEquals(requestInfoJson + allJson, result.getEntity().toString());
     }
 
+    /**
+     * Calls the getAll method and checks if the writeRequestInfoToFile was invoked.
+     */
     @Test
     public void getAllInvokesWriteToFileWithRequestInfoObject() throws Exception {
         apiMain = PowerMockito.spy(new ApiMain());
@@ -154,6 +171,10 @@ public class ApiMainTest {
         PowerMockito.verifyPrivate(apiMain).invoke("writeRequestInfoToFile", requestInfo);
     }
 
+    /**
+     * Calls the getAll method and tests that a NOT_FOUND response is returned when no models are found.
+     * Modifies the businessLogic variable to return a pair of RequestInfo and empty model set.
+     */
     @Test
     public void getAllRequestReturnsCode404NotFoundIfThereWereNoModelsToReturn() throws IllegalAccessException {
         Mockito.when(businessLogic.getAllFromUrl(any(URL.class))).thenReturn(new Pair<>(requestInfo, new HashSet<>()));
@@ -165,6 +186,10 @@ public class ApiMainTest {
         Assert.assertEquals("No records found!", result.getEntity());
     }
 
+    /**
+     * Calls the getAll method and tests that a BAD_REQUEST response is returned when the provided url is not in the
+     * correct format.
+     */
     @Test
     public void getAllRequestReturnsCode400BadRequestIfUrlIsNotInTheRightFormat() {
         Response result = apiMain.getAll("adsasda");
@@ -173,6 +198,9 @@ public class ApiMainTest {
         Assert.assertEquals("Not a real url!", result.getEntity());
     }
 
+    /**
+     * Calls the getAll method and tests the happy path with the static content.
+     */
     @Test
     public void getOneRequestResponseContentAsExpected() {
         Response result = apiMain.getOne("http://www.example.com", "", "");
@@ -181,6 +209,10 @@ public class ApiMainTest {
         Assert.assertEquals(requestInfoJson + oneJson, result.getEntity().toString());
     }
 
+    /**
+     * Calls the getOne method and tests that a NOT_FOUND response is returned when no model is found.
+     * Modifies the businessLogic variable to return a pair of RequestInfo and empty model set.
+     */
     @Test
     public void getOneRequestReturnsCode404NotFoundIfThereWasNotSuchModel() throws IllegalAccessException {
         Mockito.when(businessLogic.getOneFromUrl(any(URL.class), any(String.class), any(String.class)))
@@ -193,6 +225,10 @@ public class ApiMainTest {
         Assert.assertEquals("No record found!", result.getEntity());
     }
 
+    /**
+     * Calls the getOne method and tests that a BAD_REQUEST response is returned when the provided url is not in the
+     * correct format.
+     */
     @Test
     public void getOneRequestReturnsCode400BadRequestIfUrlIsNotInTheRightFormat() {
         Response result = apiMain.getOne("adsasda", "", "");
@@ -201,14 +237,23 @@ public class ApiMainTest {
         Assert.assertEquals("Not a url!", result.getEntity());
     }
 
+    /**
+     * Calls the getLastRequest method and tests the happy path with the static content.
+     */
     @Test
-    public void getLastRequestResponseContentAsExpected() {
+    public void getLastRequestResponseContentAsExpected(){
         Response result = apiMain.getLastRequest();
 
         Assert.assertEquals(Response.Status.OK.getStatusCode(), result.getStatus());
         Assert.assertEquals(requestInfoJson, result.getEntity());
     }
 
+    /**
+     * Calls the getLastRequest method and tests that NOT_FOUND response will be returned if the file that contains
+     * the info for the last request does exists.
+     * Modifies the fileName variable to use a non-existing file.
+     * @throws IllegalAccessException required due to the use of MemberModifier.
+     */
     @Test
     public void getLastRequestReturnsCode404NotFoundIfReadFromFileReturnsNull() throws IllegalAccessException {
         MemberModifier.field(ApiMain.class, "fileName").set(apiMain, "../nonExisting.json");

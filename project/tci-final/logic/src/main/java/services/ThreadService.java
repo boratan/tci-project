@@ -1,11 +1,6 @@
 package services;
 
-import com.sun.javafx.print.Units;
-import javafx.util.Pair;
 import models.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -13,7 +8,6 @@ public class ThreadService{
     private Set<FutureTask<IModel>> tasks;
     private Set<FutureTask<IModel>> toRemove;
     private Set<IModel> models;
-    private RequestInfo requestInfo;
     private ExecutorService threadPool;
 
     /**
@@ -90,10 +84,25 @@ public class ThreadService{
         return models;
     }
 
+    /**
+     * Thread pool shutdown for usage outside of the class.
+     */
     public void shutdownPool(){
         threadPool.shutdown();
     }
 
+    /**
+     * Gets all future tasks currently running in the ThreadService.
+     */
+    public Set<FutureTask<IModel>> getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Gets the result of the specified future task.
+     * @param task The task for which the result should be retrieved/
+     * @return The result of the task.
+     */
     private IModel getFromTask(FutureTask<IModel> task){
         try {
             return task.get();
@@ -176,9 +185,5 @@ public class ThreadService{
         else if (model.getAuthors().contains(argument))
             return true;
         else return (model.getYear().toString().equals(argument));
-    }
-
-    public Set<FutureTask<IModel>> getTasks() {
-        return tasks;
     }
 }
