@@ -30,7 +30,7 @@ build:
             - builds/libs/*.jar
         expire_in: 1 week
     only:
-    - dev-veselin
+        - dev-veselin
 		
 test:
     stage: test
