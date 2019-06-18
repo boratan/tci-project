@@ -1,11 +1,41 @@
-import models.RequestInfo;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
+import javafx.util.Pair;
+import models.*;
+import serializers.GetAllSerializer;
+import serializers.GetOneSerializer;
+import serializers.RequestInfoSerializer;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Set;
 
-import javax.xml.ws.Response;
-
+@Path("api")
 public class ApiMain {
 
-    LogicMain businessLogic;
+    private LogicMain businessLogic;
+    private RequestInfoSerializer requestInfoSerializer;
+    private GetAllSerializer getAllSerializer;
+    private GetOneSerializer getOneSerializer;
+    private String fileName;
+    private Gson gson;
+
+    public ApiMain(){
+        businessLogic = new LogicMain();
+        requestInfoSerializer = new RequestInfoSerializer();
+        getAllSerializer = new GetAllSerializer();
+        getOneSerializer = new GetOneSerializer();
+        fileName = "../lastRequest.json";
+        gson = new Gson();
+    }
 
     /**
      * Uses the businessLogic to get all scraped data from a base url
@@ -13,8 +43,26 @@ public class ApiMain {
      * @param url
      * @return
      */
-    public Response getAll(String url) {
-        throw new NotImplementedException();
+    @GET
+    @Path("all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll(@QueryParam("url") String url) {
+        URL asUrl = null;
+        try {
+            asUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Not a real url!").build();
+        }
+        Pair<RequestInfo, Set<IModel>> result = businessLogic.getAllFromUrl(asUrl);
+        if (result.getValue().isEmpty()){
+            return Response.status(Response.Status.NOT_FOUND).entity("No records found!").build();
+        }
+        BaseRequest baseRequest = new BaseRequest();
+        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        writeRequestInfoToFile(request);
+        String requestInfo = requestInfoSerializer.serializeToJson(request);
+        String models = getAllSerializer.serializeToJson(new GetAll(result.getValue()));
+        return Response.ok(requestInfo + models).type(MediaType.APPLICATION_JSON).build();
     }
 
     /**
@@ -25,8 +73,26 @@ public class ApiMain {
      * @param extraInfo
      * @return
      */
-    public Response getOne(String url, String type, String extraInfo) {
-        throw new NotImplementedException();
+    @GET
+    @Path("one")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOne(@QueryParam("url") String url,@QueryParam("type") String type,@QueryParam("extraInfo") String extraInfo) {
+        URL asUrl = null;
+        try {
+            asUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Not a url!").build();
+        }
+        Pair<RequestInfo, Set<IModel>> result = businessLogic.getOneFromUrl(asUrl, type, extraInfo);
+        if (result.getValue().isEmpty()){
+            return Response.status(Response.Status.NOT_FOUND).entity("No record found!").build();
+        }
+        BaseRequest baseRequest = new BaseRequest();
+        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        writeRequestInfoToFile(request);
+        String requestInfo = requestInfoSerializer.serializeToJson(request);
+        String model = getOneSerializer.serializeToJson(new GetOne(result.getValue()));
+        return Response.ok(requestInfo + model).build();
     }
 
     /**
@@ -34,8 +100,17 @@ public class ApiMain {
      * If there is no such information, it returns code NotFound.
      * @return
      */
+    @GET
+    @Path("last")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getLastRequest() {
-        throw new NotImplementedException();
+        String result;
+        try {
+            result = readFromFile();
+        } catch (FileNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity("No record found!").build();
+        }
+        return Response.ok(result).build();
     }
 
     /**
@@ -43,7 +118,12 @@ public class ApiMain {
      * @param info
      */
     private void writeRequestInfoToFile(RequestInfo info) {
-        throw new NotImplementedException();
+        try (FileWriter file = new FileWriter(fileName)) {
+            file.write(requestInfoSerializer.serializeToJson(info));
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -51,7 +131,14 @@ public class ApiMain {
      * and return it in the format of json String.
      * @return
      */
-    private String readFromFile() {
-        throw new NotImplementedException();
+    private String readFromFile() throws FileNotFoundException {
+        JsonElement json = gson.fromJson(new FileReader(fileName), JsonElement.class);
+        return gson.toJson(json);
+    }
+
+    private RequestInfo makeOfficialRequest(BaseRequest baseRequest, RequestInfo requestInfo){
+        requestInfo.setId(baseRequest.getId());
+        requestInfo.setTime((int) baseRequest.getTimeInMilli());
+        return requestInfo;
     }
 }

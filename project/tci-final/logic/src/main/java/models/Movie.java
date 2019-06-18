@@ -1,17 +1,19 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Movie implements IModel{
     private String name;
     private String genre;
     private String format;
     private Integer year;
     private String director;
-    private String[] writers;
-    private String[] stars;
+    private ArrayList<String> writers;
+    private ArrayList<String> stars;
 
     public Movie(){}
 
-    public Movie(String name, String genre, String format, Integer year, String director, String[] writers, String[] stars){
+    public Movie(String name, String genre, String format, Integer year, String director, ArrayList<String> writers, ArrayList<String> stars){
 
         this.name = name;
         this.genre = genre;
@@ -62,19 +64,19 @@ public class Movie implements IModel{
         this.director = director;
     }
 
-    public String[] getWriters() {
+    public ArrayList<String> getWriters() {
         return writers;
     }
 
-    public void setWriters(String[] writers) {
+    public void setWriters(ArrayList<String>writers) {
         this.writers = writers;
     }
 
-    public String[] getStars() {
+    public ArrayList<String> getStars() {
         return stars;
     }
 
-    public void setStars(String[] stars) {
+    public void setStars(ArrayList<String> stars) {
         this.stars = stars;
     }
 }

@@ -4,7 +4,6 @@ import models.EnrichedUrl;
 import models.IModel;
 import org.jsoup.nodes.Document;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.concurrent.Callable;
 
 /**
