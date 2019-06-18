@@ -1,9 +1,12 @@
 package services;
 
 import models.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.ExpectedException;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.rules.Timeout;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -18,12 +21,42 @@ import static org.mockito.Mockito.mock;
 @PrepareForTest(ThreadService.class)
 public class ThreadServiceTest {
     private ThreadService threadService;
-    private Movie movie;
-    private Book book;
-    private Music music;
+    private static Movie movie;
+    private static Book book;
+    private static Music music;
 
-    @Before
-    public void setUp(){
+    private String testLog = "";
+    @Rule
+    public final TestRule watchman = new TestWatcher() {
+        @Override
+        protected void starting(Description description) {
+            testLog += String.format("Test %s started\n", description);
+        }
+
+        @Override
+        protected void succeeded(Description description) {
+            testLog += String.format("Test %s succeeded", description);
+        }
+
+        @Override
+        protected void failed(Throwable e, Description description) {
+            testLog += String.format("Test %s failed", description);
+        }
+
+        @Override
+        protected void finished(Description description) {
+            System.out.println(testLog);
+        }
+    };
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
+
+    @Rule
+    public TestRule globalTimeout = Timeout.seconds(7);
+
+    @BeforeClass
+    public static void setUp(){
         movie = new Movie(
                 "The Lord of the Rings: The Fellowship of the Ring",
                 "Drama",
@@ -51,10 +84,11 @@ public class ThreadServiceTest {
         );
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test
     public void CheckThatScrapeMethodThrowsExceptionWhenUrlIsNull() {
         threadService = new ThreadService();
 
+        exception.expect(IllegalArgumentException.class);
         threadService.scrape(null);
     }
 
