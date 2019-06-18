@@ -145,7 +145,7 @@ public class CrawlerTest {
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlScrapeIsCalled(){
         Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
-        verify(ts).scrape(crawler.getVisited().iterator().next(),null,null);
+        verify(ts).scrape(crawler.getVisited().iterator().next());
     }
 
     /**

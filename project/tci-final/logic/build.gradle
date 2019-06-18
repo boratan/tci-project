@@ -13,6 +13,10 @@ repositories {
     jcenter()
 }
 
+jar {
+    archiveName = "logic.jar"
+}
+
 // add for automatically downloading javadoc while developing (for ctrl-Q)
 idea {
     module {

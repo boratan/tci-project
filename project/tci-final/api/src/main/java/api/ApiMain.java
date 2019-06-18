@@ -1,6 +1,9 @@
+package api;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import javafx.util.Pair;
+import main.LogicMain;
 import models.*;
 import serializers.GetAllSerializer;
 import serializers.GetOneSerializer;

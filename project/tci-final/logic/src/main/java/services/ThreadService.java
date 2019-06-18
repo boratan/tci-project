@@ -180,7 +180,7 @@ public class ThreadService{
             return true;
         else if (model.getFormat().equals(argument))
             return true;
-        else if (model.getIsnb().equals(argument))
+        else if (model.getIsbn().equals(argument))
             return true;
         else if (model.getAuthors().contains(argument))
             return true;

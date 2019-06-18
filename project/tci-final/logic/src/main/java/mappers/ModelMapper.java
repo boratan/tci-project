@@ -5,10 +5,8 @@ import models.Book;
 import models.IModel;
 import models.Movie;
 import models.Music;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,7 +81,7 @@ public class ModelMapper {
                     case "publisher":
                         publisher = el.selectFirst("td").text();
                         break;
-                    case "isnb":
+                    case "isbn":
                         isnb = el.selectFirst("td").text();
                         break;
                 }
