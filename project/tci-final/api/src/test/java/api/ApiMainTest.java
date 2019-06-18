@@ -1,4 +1,8 @@
+package api;
+
+import api.ApiMain;
 import javafx.util.Pair;
+import main.LogicMain;
 import models.*;
 import org.junit.*;
 import org.junit.rules.TestRule;
@@ -41,7 +45,8 @@ public class ApiMainTest {
     private static String allJson;
     private static String oneJson;
 
-    @Mock LogicMain businessLogic;
+    @Mock
+    LogicMain businessLogic;
     @Mock RequestInfoSerializer requestInfoSerializer;
     @Mock GetAllSerializer getAllSerializer;
     @Mock GetOneSerializer getOneSerializer;
@@ -109,7 +114,8 @@ public class ApiMainTest {
         music = new Music(
                 "Clasical",
                 "CD",
-                "2012",
+                "CD",
+                2012,
                 "Ludwig van Beethoven"
         );
 

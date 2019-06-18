@@ -78,6 +78,8 @@ public class Crawler {
             //Sets the head URL to the link on which the crawling has begun
             if (getHeadURL() == null && !urls.isEmpty())
                 this.headURL = urls.iterator().next();
+            else if (getHeadURL() == null && urls.isEmpty())
+                throw new IllegalArgumentException("No head url passed");
 
             //Clear urls from already crawled URLs
             clearRepeatingURLs(urls);
@@ -96,7 +98,7 @@ public class Crawler {
                         if (url.getHost().equals(getHeadURL().getHost())) {
 
                             //Convert url to EnrichedUrl and start a scraping task on it
-                            addAndScrapeURL(url, type, argument);
+                            addAndScrapeURL(url);
 
                             //Add all links present on url to newURLs
                             newURLs.addAll(getLinksOnURL(url));
@@ -119,9 +121,6 @@ public class Crawler {
                 } catch (final IOException | Error ignored) {
                 }
             }
-//            else{
-//                    threadService.shutdownPool();
-//                }
             return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
         } else throw new IllegalArgumentException();
     }
@@ -143,13 +142,11 @@ public class Crawler {
      *
      * @param url      url that will be converted to EnrichedUrl.
      *                 A scraper task on this URL is started.
-     * @param type     the type of IModel that the scraper will look for. Can be null.
-     * @param argument a keyword identifying the IModel that the scraper will look for. Can be null.
      */
-    private void addAndScrapeURL(URL url, String type, String argument) {
+    private void addAndScrapeURL(URL url) {
         EnrichedUrl enrichedURL = new EnrichedUrl(url, this.depth);
         this.visited.add(enrichedURL);
-        this.threadService.scrape(enrichedURL, type, argument);
+        this.threadService.scrape(enrichedURL);
     }
 
     /**

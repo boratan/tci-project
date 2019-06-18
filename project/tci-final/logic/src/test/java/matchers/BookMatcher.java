@@ -46,12 +46,12 @@ public class BookMatcher extends GenericAssert<BookMatcher, Book> {
         return this;
     }
 
-    public BookMatcher hasIsnb(String arg) {
+    public BookMatcher getIsbn(String arg) {
         isNotNull();
         String errorMessage = String.format(
                 "Expected isnb to be <%s> but was <%s>",
-                arg, actual.getIsnb());
-        Assertions.assertThat(actual.getIsnb())
+                arg, actual.getIsbn());
+        Assertions.assertThat(actual.getIsbn())
                 .overridingErrorMessage(errorMessage)
                 .isEqualTo(arg);
         return this;

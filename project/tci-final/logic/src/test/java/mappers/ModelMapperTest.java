@@ -64,7 +64,7 @@ public class ModelMapperTest {
 
         row = tbody.appendElement("tr");
         row.appendElement("th").text("ISBN");
-        row.appendElement("td").text("isbn");
+        row.appendElement("td").text("978-0132350884");
     }
     /**
      * Populated the movieElement with proper html structure.

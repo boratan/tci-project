@@ -85,7 +85,8 @@ public class ThreadServiceTest {
         music = new Music(
                 "Clasical",
                 "CD",
-                "2012",
+                "CD",
+                2012,
                 "Ludwig van Beethoven"
         );
     }

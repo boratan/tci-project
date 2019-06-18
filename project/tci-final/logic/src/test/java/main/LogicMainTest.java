@@ -1,4 +1,7 @@
+package main;
+
 import javafx.util.Pair;
+import main.LogicMain;
 import models.IModel;
 import models.RequestInfo;
 import org.junit.Before;

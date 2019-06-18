@@ -1,3 +1,5 @@
+package main;
+
 import javafx.util.Pair;
 import models.EnrichedUrl;
 import models.IModel;
@@ -12,7 +14,7 @@ public class LogicMain {
 
     private ThreadService threadService;
 
-    LogicMain() {
+    public LogicMain() {
         this.threadService = new ThreadService();
     }
 
