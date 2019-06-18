@@ -14,13 +14,14 @@ build:
   stage: build
   script:
     - cd project/tci-final/api
-    - gradle --build-cache assemble
+    - gradle compileJava 
     - cd ..
     - cd logic
-    - gradle --build-cache assemble
+    - gradle compileJava 
   artifacts:
     paths:
-      - build/libs/*.war
+      - build
+      - .gradle
 
 test:
   stage: test
