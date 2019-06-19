@@ -1,21 +1,26 @@
-stages:
-  - build
-  - test
+image: gradle:alpine
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
+stages:
+  - build
+  - test
+
 build:
   stage: build
-  script:
+  script: 
     - cd project/tci-final/api
-    - gradlew.bat build --stacktrace
+    - ./gradlew --build-cache assemble
     - cd ..
-    - cd api
-    - gradlew.bat build --stacktrace
+    - cd logic
+    - ./gradlew --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
-    policy: pull
+    policy: push
     paths:
       - build
       - .gradle
@@ -24,16 +29,13 @@ test:
   stage: test
   script:
     - cd project/tci-final/api
-    - gradlew.bat test
+    - ./gradlew check
     - cd ..
-    - cd api
-    - gradlew.bat test
+    - cd logic
+    - ./gradlew check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
       - build
       - .gradle
-
-after_script:
-  - echo "End CI"
