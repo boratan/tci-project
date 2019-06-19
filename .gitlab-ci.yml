@@ -63,7 +63,8 @@ test:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
     paths:
-      - build
+      - project/tci-final/logic/build
+      - project/tci-final/api/build
       - .gradle
   artifacts:
     when: always
