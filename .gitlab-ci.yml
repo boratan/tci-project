@@ -18,7 +18,6 @@ build:
     - cd ..
     - cd api
     - gradle build
-  allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
