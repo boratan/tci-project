@@ -14,8 +14,13 @@ build:
   stage: build
   script:
     - cd project/tci-final/api
-    - gradle compileJava 
-  artifacts:
+    - gradle build
+    - cd ..
+    - cd api
+    - gradle build
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
     paths:
       - build
       - .gradle
@@ -23,7 +28,11 @@ build:
 test:
   stage: test
   script:
-    gradle check
+    - cd project/tci-final/api
+    - gradle test
+    - cd ..
+    - cd api
+    - gradle test
 
 
 after_script:
