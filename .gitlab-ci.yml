@@ -47,7 +47,7 @@ build:
       
 test:
   tags:
-  - Maria, tci
+  - Maria
   stage: test
   script: 
   - cd project/tci-final/logic
@@ -79,7 +79,7 @@ test:
   
 pages:
     tags:
-    - Maria, tci
+    - Maria
     stage: deploy
     dependencies:
     - test
@@ -107,4 +107,4 @@ pages:
         paths:
         - public
     only:
-    - dev-ci
+    - master
