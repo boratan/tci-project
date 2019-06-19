@@ -1,6 +1,6 @@
 package services;
 
-import javafx.util.Pair;
+import org.javatuples.Pair;
 import models.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

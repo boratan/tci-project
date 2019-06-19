@@ -1,6 +1,6 @@
 package services;
 
-import javafx.util.Pair;
+import org.javatuples.Pair;
 import models.EnrichedUrl;
 import models.IModel;
 import org.junit.Assert;
@@ -15,7 +15,6 @@ import org.junit.runner.Description;
 import org.mockito.Mock;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -136,7 +135,7 @@ public class CrawlerTest {
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlArgumentWithChildLinksDepthIncreases(){
         Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
-        Assert.assertNotEquals(0, (int)pair.getKey().getDepth());
+        Assert.assertNotEquals(0, (int)pair.getValue0().getDepth());
     }
 
     /**

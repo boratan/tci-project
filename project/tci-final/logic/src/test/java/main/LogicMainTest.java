@@ -1,7 +1,6 @@
 package main;
 
-import javafx.util.Pair;
-import main.LogicMain;
+import org.javatuples.Pair;
 import models.IModel;
 import models.RequestInfo;
 import org.junit.Before;
@@ -116,7 +115,7 @@ public class LogicMainTest {
     public void getAllFromUrlReturnsPairWithNotNullRequestInfoIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
         Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
-        assert pair.getKey() != null;
+        assert pair.getValue0() != null;
     }
 
     /**
@@ -127,7 +126,7 @@ public class LogicMainTest {
     public void getAllFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
         Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
-        assert pair.getValue() != null;
+        assert pair.getValue1() != null;
     }
 
     /**
@@ -168,7 +167,7 @@ public class LogicMainTest {
     public void getOneFromUrlReturnsPairWithNotNullRequestInfoIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
         Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
-        assert pair.getKey() != null;
+        assert pair.getValue0() != null;
     }
 
     /**
@@ -179,6 +178,6 @@ public class LogicMainTest {
     public void getOneFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
         Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
-        assert pair.getValue() != null;
+        assert pair.getValue1() != null;
     }
 }

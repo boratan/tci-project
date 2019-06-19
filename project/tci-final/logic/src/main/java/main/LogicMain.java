@@ -1,6 +1,6 @@
 package main;
 
-import javafx.util.Pair;
+import org.javatuples.Pair;
 import models.EnrichedUrl;
 import models.IModel;
 import models.RequestInfo;
@@ -82,9 +82,9 @@ public class LogicMain {
             RequestInfo returnRequestInfo = new RequestInfo(
                     crawler.getVisited().size(),
                     (int) crawler.getVisited().stream().distinct().count(),
-                    crawlerResult.getKey().getDepth());
+                    crawlerResult.getValue0().getDepth());
 
-            return new Pair<>(returnRequestInfo, crawlerResult.getValue());
+            return new Pair<>(returnRequestInfo, crawlerResult.getValue1());
         } else
             throw new IllegalArgumentException("Start URL cannot be empty!");
     }

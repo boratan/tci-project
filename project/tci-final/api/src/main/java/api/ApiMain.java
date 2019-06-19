@@ -2,7 +2,7 @@ package api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import javafx.util.Pair;
+import org.javatuples.Pair;
 import main.LogicMain;
 import models.*;
 import serializers.GetAllSerializer;
@@ -55,13 +55,13 @@ public class ApiMain {
             return Response.status(Response.Status.BAD_REQUEST).entity("Not a real url!").build();
         }
         Pair<RequestInfo, Set<IModel>> result = businessLogic.getAllFromUrl(asUrl);
-        if (result.getValue().isEmpty()){
+        if (result.getValue1().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No records found!").build();
         }
         BaseRequest baseRequest = new BaseRequest();
-        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        RequestInfo request = makeOfficialRequest(baseRequest, result.getValue0());
         writeRequestInfoToFile(request);
-        String models = getAllSerializer.serializeToJson(new GetAll(result.getValue()));
+        String models = getAllSerializer.serializeToJson(new GetAll(result.getValue1()));
         return Response.ok(models).type(MediaType.APPLICATION_JSON).build();
     }
 
@@ -84,13 +84,13 @@ public class ApiMain {
             return Response.status(Response.Status.BAD_REQUEST).entity("Not a url!").build();
         }
         Pair<RequestInfo, Set<IModel>> result = businessLogic.getOneFromUrl(asUrl, type, extraInfo);
-        if (result.getValue().isEmpty()){
+        if (result.getValue1().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No record found!").build();
         }
         BaseRequest baseRequest = new BaseRequest();
-        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        RequestInfo request = makeOfficialRequest(baseRequest, result.getValue0());
         writeRequestInfoToFile(request);
-        String model = getOneSerializer.serializeToJson(new GetOne(result.getValue()));
+        String model = getOneSerializer.serializeToJson(new GetOne(result.getValue1()));
         return Response.ok(model).build();
     }
 

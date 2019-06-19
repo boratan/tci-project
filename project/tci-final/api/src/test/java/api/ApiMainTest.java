@@ -1,7 +1,7 @@
 package api;
 
 import api.ApiMain;
-import javafx.util.Pair;
+import org.javatuples.Pair;
 import main.LogicMain;
 import models.*;
 import org.junit.*;

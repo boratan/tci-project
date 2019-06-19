@@ -9,9 +9,6 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.rules.Timeout;
 import org.junit.runner.Description;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class BookTest {
 

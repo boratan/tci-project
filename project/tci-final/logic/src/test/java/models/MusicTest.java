@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static matchers.IsValidYearMatcher.isValidYearMatcher;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static matchers.MusicMatcher.assertThat;
