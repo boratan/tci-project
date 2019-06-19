@@ -37,7 +37,9 @@ public class ScraperTest {
     private Scraper scraper;
     private EnrichedUrl url;
 
-
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         url = mock(EnrichedUrl.class);
@@ -75,7 +77,7 @@ public class ScraperTest {
      * @throws Exception
      */
     @Test
-    public void CheckCallMethodReturnsNotNullIModel() throws Exception {
+    public void checkCallMethodReturnsNotNullIModel() throws Exception {
         //arrange
         when(url.getUrl()).thenReturn(new URL("http://tci.hera.fhict.nl/details.php?id=102"));
         //PowerMockito.doReturn(model).when(mapper, "mapToModel", doc.getElementsByClass("media-details").first());

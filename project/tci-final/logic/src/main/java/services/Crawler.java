@@ -26,7 +26,7 @@ public class Crawler {
         this.visitedResults = new HashSet<>();
         this.headURL = null;
         this.depth = 0;
-        this.SetThreadService(ts);
+        this.setThreadService(ts);
     }
 
     public Set<EnrichedUrl> getVisited() {
@@ -55,7 +55,7 @@ public class Crawler {
      *
      * @param ts Thread Service to assign. Cannot be null.
      */
-    private void SetThreadService(ThreadService ts) {
+    private void setThreadService(ThreadService ts) {
         if (ts != null) this.threadService = ts;
         else throw new IllegalArgumentException();
     }

@@ -4,15 +4,26 @@ import models.Book;
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
 
-
+/**
+ * Matcher for book
+ */
 public class BookMatcher extends GenericAssert<BookMatcher, Book> {
 
+    /**
+     * constructor
+     */
     public BookMatcher(Book actual) {
         super(BookMatcher.class, actual);
     }
+    /**
+     * assertor
+     */
     public static BookMatcher assertThat(Book actual) {
         return new BookMatcher(actual);
     }
+    /**
+     * assert
+     */
     public BookMatcher hasName(String name) {
         isNotNull();
         String errorMessage = String.format(
@@ -23,7 +34,9 @@ public class BookMatcher extends GenericAssert<BookMatcher, Book> {
                 .isEqualTo(name);
         return this;
     }
-
+    /**
+     * assert
+     */
     public BookMatcher hasAuthors(String arg) {
         isNotNull();
         String errorMessage = String.format(
@@ -34,7 +47,9 @@ public class BookMatcher extends GenericAssert<BookMatcher, Book> {
                 .isEqualTo(arg);
         return this;
     }
-
+    /**
+     * assert
+     */
     public BookMatcher hasFormat(String format) {
         isNotNull();
         String errorMessage = String.format(
@@ -45,7 +60,9 @@ public class BookMatcher extends GenericAssert<BookMatcher, Book> {
                 .isEqualTo(format);
         return this;
     }
-
+    /**
+     * assert
+     */
     public BookMatcher getIsbn(String arg) {
         isNotNull();
         String errorMessage = String.format(
@@ -56,7 +73,9 @@ public class BookMatcher extends GenericAssert<BookMatcher, Book> {
                 .isEqualTo(arg);
         return this;
     }
-
+    /**
+     * assert
+     */
     public BookMatcher hasPublisher(String arg) {
         isNotNull();
         String errorMessage = String.format(

@@ -18,6 +18,9 @@ public class MusicTest {
 
     private Music music;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         music = new Music("test song", "test genre", "test format", 1999, "test artist" );

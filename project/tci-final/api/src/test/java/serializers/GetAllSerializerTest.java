@@ -10,11 +10,17 @@ import org.junit.rules.TestWatcher;
 import org.junit.rules.Timeout;
 import org.junit.runner.Description;
 
+/**
+ * get all serializer tests
+ */
 public class GetAllSerializerTest {
 
     private GetAllSerializer gas;
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -38,12 +44,21 @@ public class GetAllSerializerTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         gas = new GetAllSerializer();

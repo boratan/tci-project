@@ -9,15 +9,18 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.rules.Timeout;
 import org.junit.runner.Description;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
+/**
+ * Book test
+ */
 public class BookTest {
 
     private Book book;
 
     private String testLog = "";
+    /**
+     * rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -41,12 +44,21 @@ public class BookTest {
         }
     };
 
+    /**
+     * rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         book = new Book(
@@ -65,7 +77,7 @@ public class BookTest {
      * Book Name can be returned upon calling getName().
      */
     @Test
-    public void BookNameIsNotNullWhenConstructorIsInvoked(){
+    public void bookNameIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getName());
     }
 
@@ -74,7 +86,7 @@ public class BookTest {
      * Book Genre can be returned upon calling getGenre().
      */
     @Test
-    public void BookGenreIsNotNullWhenConstructorIsInvoked(){
+    public void bookGenreIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getGenre());
     }
 
@@ -83,7 +95,7 @@ public class BookTest {
      * Book Format can be returned upon calling getFormat().
      */
     @Test
-    public void BookFormatIsNotNullWhenConstructorIsInvoked(){
+    public void bookFormatIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getFormat());
     }
 
@@ -92,7 +104,7 @@ public class BookTest {
      * Book Year can be returned upon calling getYear().
      */
     @Test
-    public void BookYearIsNotNullWhenConstructorIsInvoked(){
+    public void bookYearIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getYear());
     }
 
@@ -101,7 +113,7 @@ public class BookTest {
      * Book Authors can be returned upon calling getAuthors().
      */
     @Test
-    public void BookAuthorsIsNotNullWhenConstructorIsInvoked(){
+    public void bookAuthorsIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getAuthors());
     }
 
@@ -110,14 +122,14 @@ public class BookTest {
      * Book Publisher can be returned upon calling getPublisher().
      */
     @Test
-    public void BookPublisherIsNotNullWhenConstructorIsInvoked(){ Assert.assertNotNull(book.getPublisher()); }
+    public void bookPublisherIsNotNullWhenConstructorIsInvoked(){ Assert.assertNotNull(book.getPublisher()); }
 
     /**
      * When the constructor is called with not empty arguments,
      * Book Isbn can be returned upon calling getisbn().
      */
     @Test
-    public void BookIsbnIsNotNullWhenConstructorIsInvoked(){
+    public void bookIsbnIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(book.getIsbn());
     }
 
@@ -126,7 +138,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookNameThrowsExceptionIfTheGivenValueIsNull(){
+    public void bookNameThrowsExceptionIfTheGivenValueIsNull(){
         exception.expect(IllegalArgumentException.class);
         book.setName(null);
     }
@@ -136,7 +148,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookNameThrowsExceptionIfTheGivenValueIsEmpty(){
+    public void bookNameThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
         book.setName("");
     }
@@ -146,7 +158,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookGenreThrowsExceptionIfTheGivenValueIsNull(){
+    public void bookGenreThrowsExceptionIfTheGivenValueIsNull(){
         exception.expect(IllegalArgumentException.class);
         book.setGenre(null);
     }
@@ -156,7 +168,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookGenreThrowsExceptionIfTheGivenValueIsEmpty(){
+    public void bookGenreThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
         book.setGenre("");
     }
@@ -166,7 +178,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookFormatThrowsExceptionIfTheGivenValueIsNull(){
+    public void bookFormatThrowsExceptionIfTheGivenValueIsNull(){
         exception.expect(IllegalArgumentException.class);
         book.setFormat(null);
     }
@@ -176,13 +188,13 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookFormatThrowsExceptionIfTheGivenValueIsEmpty(){
+    public void bookFormatThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
         book.setFormat("");
     }
 
     @Test
-    public void BookYearThrowsExceptionIfTheGivenValueIsNegative(){
+    public void bookYearThrowsExceptionIfTheGivenValueIsNegative(){
         exception.expect(IllegalArgumentException.class);
         book.setYear(-5);
     }
@@ -192,7 +204,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookAuthorsThrowsExceptionIfTheGivenValueIsNull(){
+    public void bookAuthorsThrowsExceptionIfTheGivenValueIsNull(){
         exception.expect(IllegalArgumentException.class);
         book.setAuthors(null);
     }
@@ -202,7 +214,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookAuthorsThrowsExceptionIfTheGivenValueIsEmpty(){
+    public void bookAuthorsThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
         String testAuthors = "";
         book.setAuthors(testAuthors);
@@ -213,7 +225,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookPublisherThrowsExceptionIfTheGivenValueIsNull(){
+    public void bookPublisherThrowsExceptionIfTheGivenValueIsNull(){
         exception.expect(IllegalArgumentException.class);
         book.setPublisher(null);
     }
@@ -223,7 +235,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void BookPublisherThrowsExceptionIfTheGivenValueIsEmpty(){
+    public void bookPublisherThrowsExceptionIfTheGivenValueIsEmpty(){
         exception.expect(IllegalArgumentException.class);
         book.setPublisher("");
     }
@@ -233,7 +245,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void SetBookIsbnThrowsIllegalArgumentExceptionIfStringIsNotOnlyNumberAndDashes(){
+    public void setBookIsbnThrowsIllegalArgumentExceptionIfStringIsNotOnlyNumberAndDashes(){
         exception.expect(IllegalArgumentException.class);
         book.setisbn("Incorrect");
     }
@@ -243,7 +255,7 @@ public class BookTest {
      * Illegal Argument Exception is thrown.
      */
     @Test
-    public void SetBookIsbnThrowsIllegalArgumentExceptionIfStringIsNotNull(){
+    public void setBookIsbnThrowsIllegalArgumentExceptionIfStringIsNotNull(){
         exception.expect(IllegalArgumentException.class);
         book.setisbn(null);
     }

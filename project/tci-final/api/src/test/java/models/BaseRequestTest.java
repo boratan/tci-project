@@ -12,6 +12,9 @@ import static org.junit.Assert.*;
 public class BaseRequestTest {
     private BaseRequest baseRequest;
 
+    /**
+     * Setup
+     */
     @Before
     public void setUp(){
         baseRequest = new BaseRequest();
