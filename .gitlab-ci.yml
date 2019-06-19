@@ -7,10 +7,10 @@ stages:
 checkstyle:
   stage: checkstyle
   script: 
-  - cd project/tci-final/logic
-  - ./gradlew.bat checkstyleMain --info
-  - cd ../api
-  - ./gradlew.bat checkstyleMain --info
+        - cd project/tci-final/logic
+        - ./gradlew checkstyleMain --info
+        - cd ../api
+        - ./gradlew checkstyleMain --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -26,12 +26,12 @@ checkstyle:
 build:
   stage: build
   dependencies:
-    - checkstyle
+        - checkstyle
   script: 
-  - cd project/tci-final/logic
-  - ./gradlew.bat build --info
-  - cd ../api
-  - ./gradlew.bat build --info
+        - cd project/tci-final/logic
+        - ./gradlew build --info
+        - cd ../api
+        - ./gradlew build --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -42,16 +42,16 @@ build:
 test:
     stage: test
     dependencies:
-    - build
+        - build
     script:
         - cd project/tci-final/logic
         - ./gradlew test --info
-        - ./gradlew.bat jacocoTestReport --info 
+        - ./gradlew jacocoTestReport --info 
         - cd ../api
         - ./gradlew test --info
-        - ./gradlew.bat jacocoTestReport --info
-        - ./gradlew.bat jmRun
-        - ./gradlew.bat jmReport
+        - ./gradlew jacocoTestReport --info
+        - ./gradlew jmRun
+        - ./gradlew jmReport
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: push
@@ -75,8 +75,8 @@ deploy:
     dependencies:
         - test
     script:
-        - cd project\tci-final\api
-        - ./gradlew.bat war
+        - cd project/tci-final/api
+        - ./gradlew war
         - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
         - cd ../../../
         - md .public
@@ -95,4 +95,4 @@ deploy:
     artifacts:
         when: always
         paths:
-        - public
+            - public
