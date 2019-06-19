@@ -1,13 +1,14 @@
 package main;
 
-import org.javatuples.Pair;
 import models.EnrichedUrl;
 import models.IModel;
 import models.RequestInfo;
 import services.Crawler;
 import services.ThreadService;
 import java.net.URL;
+import java.util.AbstractMap;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 
 public class LogicMain {
@@ -27,7 +28,7 @@ public class LogicMain {
      * and an EnrichedUrl headUrl as Key and the depth of search as Value,
      * and a set of discovered IModels during the search.
      */
-    public Pair<RequestInfo, Set<IModel>> getAllFromUrl(final URL startURL) {
+    public Map.Entry<RequestInfo, Set<IModel>> getAllFromUrl(final URL startURL) {
         return crawlAndScrapeUrls(startURL, null, null);
     }
 
@@ -43,7 +44,7 @@ public class LogicMain {
      * and an EnrichedUrl headUrl as Key and the depth of search as Value,
      * and a set of discovered IModels during the search.
      */
-    public Pair<RequestInfo, Set<IModel>> getOneFromUrl(final URL startURL, String type, String argument) {
+    public Map.Entry<RequestInfo, Set<IModel>> getOneFromUrl(final URL startURL, String type, String argument) {
         return crawlAndScrapeUrls(startURL, type, argument);
     }
 
@@ -71,20 +72,21 @@ public class LogicMain {
      * and an EnrichedUrl headUrl as Key and the depth of search as Value,
      * and a set of discovered IModels during the search.
      */
-    private Pair<RequestInfo, Set<IModel>> crawlAndScrapeUrls(final URL startURL, String type, String argument) {
+    private Map.Entry<RequestInfo, Set<IModel>> crawlAndScrapeUrls(final URL startURL, String type, String argument) {
         if (startURL != null) {
 
             //Instantiates a crawler, starts a crawling on the startURL and returns the pair result
             Crawler crawler = new Crawler(threadService);
-            Pair<EnrichedUrl, Set<IModel>> crawlerResult = crawler.crawl(headURL(startURL), type, argument);
+
+            Map.Entry<EnrichedUrl, Set<IModel>> crawlerResult = crawler.crawl(headURL(startURL), type, argument);
 
             //Creates a RequestInfo based on the results from the crawl
             RequestInfo returnRequestInfo = new RequestInfo(
                     crawler.getVisited().size(),
                     (int) crawler.getVisited().stream().distinct().count(),
-                    crawlerResult.getValue0().getDepth());
+                    crawlerResult.getKey().getDepth());
 
-            return new Pair<>(returnRequestInfo, crawlerResult.getValue1());
+            return new AbstractMap.SimpleEntry<>(returnRequestInfo, crawlerResult.getValue());
         } else
             throw new IllegalArgumentException("Start URL cannot be empty!");
     }

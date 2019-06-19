@@ -1,6 +1,5 @@
 package services;
 
-import org.javatuples.Pair;
 import models.EnrichedUrl;
 import models.IModel;
 import org.junit.Assert;
@@ -17,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.mockito.Mockito.*;
@@ -124,7 +124,7 @@ public class CrawlerTest {
      */
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlArgumentItReturnsPairOfLegalEnrichedUrlAndSet() {
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         assert pair != null;
     }
 
@@ -134,8 +134,8 @@ public class CrawlerTest {
      */
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlArgumentWithChildLinksDepthIncreases(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
-        Assert.assertNotEquals(0, (int)pair.getValue0().getDepth());
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Assert.assertNotEquals(0, (int)pair.getKey().getDepth());
     }
 
     /**
@@ -143,7 +143,7 @@ public class CrawlerTest {
      */
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlScrapeIsCalled(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         verify(ts).scrape(crawler.getVisited().iterator().next());
     }
 
@@ -153,7 +153,7 @@ public class CrawlerTest {
      */
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlCheckFutureTasksIsCalledOnlyOnce(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         verify(ts, times(1)).checkFutureTasks();
     }
 
@@ -163,7 +163,7 @@ public class CrawlerTest {
      */
     @Test
     public void AfterCallingCrawlMethodWithLegalUrlTypeAndArgumentCheckFutureTasksForSpecificItemIsCalledAtLeastOnce(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, type, argument);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, type, argument);
         verify(ts, atLeastOnce()).checkFutureTasksForSpecificItem(type,argument);
     }
 }

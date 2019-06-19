@@ -1,6 +1,5 @@
 package services;
 
-import org.javatuples.Pair;
 import models.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,7 +7,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URL;
+import java.util.AbstractMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Crawler {
@@ -72,7 +73,7 @@ public class Crawler {
      * @return A Pair of EnrichedUrl that has the headUrl as Key and the depth of search as Value,
      * and a set of discovered IModels during the search.
      */
-    public Pair<EnrichedUrl, Set<IModel>> crawl(final Set<URL> urls, String type, String argument) {
+    public Map.Entry<EnrichedUrl, Set<IModel>> crawl(final Set<URL> urls, String type, String argument) {
         if (urls != null) {
 
             //Sets the head URL to the link on which the crawling has begun
@@ -86,7 +87,7 @@ public class Crawler {
                 final boolean a = (type == null || type.equals(""));
                 final boolean b = (argument == null || argument.equals(""));
                 if (a && b) checkAddModels();
-                return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
+                return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
             } else {
 
                 final Set<URL> newURLs = new HashSet<>();
@@ -107,7 +108,7 @@ public class Crawler {
                     if ((type != null && !type.equals("")) || (argument != null && !argument.equals(""))) {
                         Set<IModel> completed = this.threadService.checkFutureTasksForSpecificItem(type, argument);
                         if (completed != null && !completed.isEmpty()) {
-                            return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), completed);
+                            return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), completed);
                         }
                     }
 
@@ -122,7 +123,7 @@ public class Crawler {
 //            else{
 //                    threadService.shutdownPool();
 //                }
-            return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
+            return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
         } else throw new IllegalArgumentException();
     }
 

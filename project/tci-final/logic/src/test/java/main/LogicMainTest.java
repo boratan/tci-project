@@ -1,6 +1,5 @@
 package main;
 
-import org.javatuples.Pair;
 import models.IModel;
 import models.RequestInfo;
 import org.junit.Before;
@@ -19,6 +18,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import services.ThreadService;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -92,7 +92,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlInvokesCrawlAndScrapeMethodIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair != null;
     }
 
@@ -103,7 +103,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsNotNullPairIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair != null;
     }
 
@@ -114,8 +114,8 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsPairWithNotNullRequestInfoIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
-        assert pair.getValue0() != null;
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        assert pair.getKey() != null;
     }
 
     /**
@@ -125,8 +125,8 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
-        assert pair.getValue1() != null;
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        assert pair.getValue() != null;
     }
 
     /**
@@ -155,7 +155,7 @@ public class LogicMainTest {
 //        when(crawler.crawl(urls, type, argument)).thenReturn(new Pair<>(null, null));
 
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
         assert pair != null;
     }
 
@@ -166,8 +166,8 @@ public class LogicMainTest {
     @Test
     public void getOneFromUrlReturnsPairWithNotNullRequestInfoIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
-        assert pair.getValue0() != null;
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        assert pair.getKey() != null;
     }
 
     /**
@@ -177,7 +177,7 @@ public class LogicMainTest {
     @Test
     public void getOneFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
-        assert pair.getValue1() != null;
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        assert pair.getValue() != null;
     }
 }
