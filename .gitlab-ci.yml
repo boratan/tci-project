@@ -46,40 +46,37 @@ build:
       - .gradle
       
 test:
-  tags:
-  - Maria, tci
-  stage: test
-  script: 
-  - cd project/tci-final/logic
-  - .\gradlew.bat test --info
-  - .\gradlew.bat jacocoTestReport --info
-  - cd ../api
-  - .\gradlew.bat test --info
-  - .\gradlew.bat jacocoTestReport --info
-  - .\gradlew.bat jmRun
-  - .\gradlew.bat jmReport
-  allow_failure: true
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - project/tci-final/logic/build
-      - project/tci-final/api/build
-      - .gradle
-  artifacts:
-    when: always
-    paths:
-        - project/tci-final/logic/build/test-results/test/
-        - project/tci-final/logic/build/reports/tests/test/
-        - project/tci-final/logic/build/jacocoHtml/
-        - project/tci-final/api/build/test-results/test/
-        - project/tci-final/api/build/reports/tests/test/
-        - project/tci-final/api/build/jacocoHtml/
-        - project/tci-final/api/build/jmeter-report/
-  
-pages:
-    tags:
-    - Maria, tci
+    stage: test
+    script:
+        - cd project/tci-final/api
+        - ./gradlew test --info
+        - ./gradlew.bat jacocoTestReport --info 
+        - cd ..
+        - cd logic
+        - ./gradlew test --info
+        - ./gradlew.bat jacocoTestReport --info
+        - ./gradlew.bat jmRun
+        - ./gradlew.bat jmReport
+
+    cache:
+        key: "$CI_COMMIT_REF_NAME"
+        policy: pull
+        paths:
+            - project/tci-final/logic/build
+            - project/tci-final/api/build
+            - .gradle
+    artifacts:
+        when: always
+        paths:
+            - project/tci-final/logic/build/test-results/test/
+            - project/tci-final/logic/build/reports/tests/test/
+            - project/tci-final/logic/build/jacocoHtml/
+            - project/tci-final/api/build/test-results/test/
+            - project/tci-final/api/build/reports/tests/test/
+            - project/tci-final/api/build/jacocoHtml/
+            - project/tci-final/api/build/jmeter-report/
+
+deploy:
     stage: deploy
     dependencies:
     - test
