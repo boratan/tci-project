@@ -14,10 +14,10 @@ build:
   stage: build
   script: 
     - cd project/tci-final/api
-    - ./gradlew --build-cache assemble
+    - chmod +x ./gradlew --build-cache assemble
     - cd ..
     - cd logic
-    - ./gradlew --build-cache assemble
+    - chmod +x ./gradlew --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -29,10 +29,10 @@ test:
   stage: test
   script:
     - cd project/tci-final/api
-    - ./gradlew check
+    - chmod +x ./gradlew check
     - cd ..
     - cd logic
-    - ./gradlew check
+    - chmod +x ./gradlew check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
