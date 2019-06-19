@@ -1,6 +1,5 @@
 package services;
 
-import javafx.util.Pair;
 import models.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,7 +7,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URL;
+import java.util.AbstractMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Crawler {
@@ -72,14 +73,12 @@ public class Crawler {
      * @return A Pair of EnrichedUrl that has the headUrl as Key and the depth of search as Value,
      * and a set of discovered IModels during the search.
      */
-    public Pair<EnrichedUrl, Set<IModel>> crawl(final Set<URL> urls, String type, String argument) {
+    public Map.Entry<EnrichedUrl, Set<IModel>> crawl(final Set<URL> urls, String type, String argument) {
         if (urls != null) {
 
             //Sets the head URL to the link on which the crawling has begun
             if (getHeadURL() == null && !urls.isEmpty())
                 this.headURL = urls.iterator().next();
-            else if (getHeadURL() == null && urls.isEmpty())
-                throw new IllegalArgumentException("No head url passed");
 
             //Clear urls from already crawled URLs
             clearRepeatingURLs(urls);
@@ -88,7 +87,7 @@ public class Crawler {
                 final boolean a = (type == null || type.equals(""));
                 final boolean b = (argument == null || argument.equals(""));
                 if (a && b) checkAddModels();
-                return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
+                return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
             } else {
 
                 final Set<URL> newURLs = new HashSet<>();
@@ -98,7 +97,7 @@ public class Crawler {
                         if (url.getHost().equals(getHeadURL().getHost())) {
 
                             //Convert url to EnrichedUrl and start a scraping task on it
-                            addAndScrapeURL(url);
+                            addAndScrapeURL(url, type, argument);
 
                             //Add all links present on url to newURLs
                             newURLs.addAll(getLinksOnURL(url));
@@ -109,7 +108,7 @@ public class Crawler {
                     if ((type != null && !type.equals("")) || (argument != null && !argument.equals(""))) {
                         Set<IModel> completed = this.threadService.checkFutureTasksForSpecificItem(type, argument);
                         if (completed != null && !completed.isEmpty()) {
-                            return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), completed);
+                            return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), completed);
                         }
                     }
 
@@ -121,7 +120,10 @@ public class Crawler {
                 } catch (final IOException | Error ignored) {
                 }
             }
-            return new Pair<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
+//            else{
+//                    threadService.shutdownPool();
+//                }
+            return new AbstractMap.SimpleEntry<>(new EnrichedUrl(getHeadURL(), this.depth), this.visitedResults);
         } else throw new IllegalArgumentException();
     }
 
@@ -142,8 +144,10 @@ public class Crawler {
      *
      * @param url      url that will be converted to EnrichedUrl.
      *                 A scraper task on this URL is started.
+     * @param type     the type of IModel that the scraper will look for. Can be null.
+     * @param argument a keyword identifying the IModel that the scraper will look for. Can be null.
      */
-    private void addAndScrapeURL(URL url) {
+    private void addAndScrapeURL(URL url, String type, String argument) {
         EnrichedUrl enrichedURL = new EnrichedUrl(url, this.depth);
         this.visited.add(enrichedURL);
         this.threadService.scrape(enrichedURL);

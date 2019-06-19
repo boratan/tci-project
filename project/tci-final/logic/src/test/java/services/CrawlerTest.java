@@ -1,6 +1,5 @@
 package services;
 
-import javafx.util.Pair;
 import models.EnrichedUrl;
 import models.IModel;
 import org.junit.Assert;
@@ -15,9 +14,9 @@ import org.junit.runner.Description;
 import org.mockito.Mock;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.mockito.Mockito.*;

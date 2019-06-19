@@ -2,7 +2,6 @@ package api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import javafx.util.Pair;
 import main.LogicMain;
 import models.*;
 import serializers.GetAllSerializer;
@@ -17,6 +16,7 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Set;
 
 @Path("api")
@@ -54,7 +54,7 @@ public class ApiMain {
         } catch (MalformedURLException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Not a real url!").build();
         }
-        Pair<RequestInfo, Set<IModel>> result = businessLogic.getAllFromUrl(asUrl);
+        Map.Entry<RequestInfo, Set<IModel>> result = businessLogic.getAllFromUrl(asUrl);
         if (result.getValue().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No records found!").build();
         }
@@ -83,7 +83,7 @@ public class ApiMain {
         } catch (MalformedURLException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Not a url!").build();
         }
-        Pair<RequestInfo, Set<IModel>> result = businessLogic.getOneFromUrl(asUrl, type, extraInfo);
+        Map.Entry<RequestInfo, Set<IModel>> result = businessLogic.getOneFromUrl(asUrl, type, extraInfo);
         if (result.getValue().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No record found!").build();
         }
