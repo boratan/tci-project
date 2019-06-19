@@ -33,8 +33,6 @@ checkstyle:
 
 build:
     stage: build
-    dependency:
-        - checkstyle
     script: 
         - cd project/tci-final/api
         - ./gradlew --build-cache assemble
@@ -80,8 +78,6 @@ test:
 
 deploy:
     stage: deploy
-    dependencies:
-    - test
     script:
     - cd project/tci-final/api
     - ./gradlew.bat war
