@@ -29,6 +29,9 @@ public class ThreadServiceTest {
     private static Music music;
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -52,9 +55,15 @@ public class ThreadServiceTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 

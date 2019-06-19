@@ -22,6 +22,9 @@ import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for crawler
+ */
 public class CrawlerTest {
 
     private Crawler crawler;
@@ -30,10 +33,16 @@ public class CrawlerTest {
     private String type;
     private String argument;
 
+    /**
+     * Mocking
+     */
     @Mock
     ThreadService ts = mock(ThreadService.class);
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -57,12 +66,21 @@ public class CrawlerTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() throws MalformedURLException {
         crawler = new Crawler(ts);

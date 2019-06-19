@@ -37,7 +37,9 @@ public class ScraperTest {
     private Scraper scraper;
     private EnrichedUrl url;
 
-
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         url = mock(EnrichedUrl.class);

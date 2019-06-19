@@ -9,15 +9,18 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.rules.Timeout;
 import org.junit.runner.Description;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
+/**
+ * Book test
+ */
 public class BookTest {
 
     private Book book;
 
     private String testLog = "";
+    /**
+     * rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -41,12 +44,21 @@ public class BookTest {
         }
     };
 
+    /**
+     * rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         book = new Book(

@@ -4,14 +4,26 @@ import models.Music;
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
 
+/**
+ * Matcher for music
+ */
 public class MusicMatcher extends GenericAssert<MusicMatcher, Music> {
 
+    /**
+     * constructor
+     */
     public MusicMatcher(Music actual) {
         super(MusicMatcher.class, actual);
     }
+    /**
+     * assertor
+     */
     public static MusicMatcher assertThat(Music actual) {
         return new MusicMatcher(actual);
     }
+    /**
+     * assert
+     */
     public MusicMatcher hasName(String name) {
         isNotNull();
         String errorMessage = String.format(
@@ -22,7 +34,9 @@ public class MusicMatcher extends GenericAssert<MusicMatcher, Music> {
                 .isEqualTo(name);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MusicMatcher hasArtist(String artist) {
         isNotNull();
         String errorMessage = String.format(
@@ -33,7 +47,9 @@ public class MusicMatcher extends GenericAssert<MusicMatcher, Music> {
                 .isEqualTo(artist);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MusicMatcher hasFormat(String format) {
         isNotNull();
         String errorMessage = String.format(
@@ -44,7 +60,9 @@ public class MusicMatcher extends GenericAssert<MusicMatcher, Music> {
                 .isEqualTo(format);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MusicMatcher hasGenre(String arg) {
         isNotNull();
         String errorMessage = String.format(

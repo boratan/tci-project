@@ -18,6 +18,9 @@ public class MovieTest {
 
     private Movie movie;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         List<String> writers = new ArrayList<>();

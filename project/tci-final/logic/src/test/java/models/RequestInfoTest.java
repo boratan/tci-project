@@ -10,6 +10,9 @@ import org.junit.Test;
 public class RequestInfoTest {
     private RequestInfo requestInfo;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         requestInfo = new RequestInfo(10, 5, 2);

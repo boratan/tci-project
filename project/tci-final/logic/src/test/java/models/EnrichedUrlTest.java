@@ -16,6 +16,9 @@ public class EnrichedUrlTest {
 
     private EnrichedUrl object;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         URL url = null;

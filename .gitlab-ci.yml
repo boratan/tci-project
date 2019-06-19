@@ -24,8 +24,8 @@ checkstyle:
   artifacts:
     when: always
     paths:
-        - m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/checkstyle/
-        - m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/checkstyle/
+        - project/tci-final/logic/build/reports/checkstyle/
+        - project/tci-final/api/build/reports/checkstyle/
 
     
 build:
@@ -70,11 +70,11 @@ test:
     paths:
         - project/tci-final/logic/build/test-results/test/
         - project/tci-final/logic/build/reports/tests/test/
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml/
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test/
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test/
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml/
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report/
+        - project/tci-final/logic/build/jacocoHtml/
+        - project/tci-final/api/build/test-results/test/
+        - project/tci-final/api/build/reports/tests/test/
+        - project/tci-final/api/build/jacocoHtml/
+        - project/tci-final/api/build/jmeter-report/
   
 pages:
     tags:
