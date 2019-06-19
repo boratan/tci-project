@@ -11,9 +11,9 @@ checkstyle:
   - Maria
   script: 
   - cd project/tci-final/logic
-  - gradlew.bat checkstyleTest --info
+  - gradlew.bat checkstyleMain --info
   - cd ../api
-  - gradlew.bat checkstyleTest --info
+  - gradlew.bat checkstyleMain --info
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
