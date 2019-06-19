@@ -1,7 +1,3 @@
-job:
-  tags:
-    - Maria
-    - tci
 
 stages:
     - build
@@ -9,6 +5,8 @@ stages:
     - deploy
         
 build:
+  tags:
+  - Maria
   stage: build
   script: 
   - cd project/tci-final/logic
@@ -24,6 +22,8 @@ build:
       - .gradle
       
 test:
+  tags:
+  - Maria, tci
   stage: test
   script: 
   - cd project/tci-final/logic
@@ -53,6 +53,8 @@ test:
         - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report
   
 pages:
+    tags:
+    - Maria, tci
     stage: deploy
     dependencies:
     - test
