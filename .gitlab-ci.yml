@@ -29,10 +29,10 @@ test:
   stage: test
   script:
     - cd project/tci-final/api
-    - chmod +x ./gradlew check
+    - ./gradlew check
     - cd ..
     - cd logic
-    - chmod +x ./gradlew check
+    - ./gradlew check
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
