@@ -11,10 +11,9 @@ checkstyle:
   - Maria
   script: 
   - cd project/tci-final/logic
-  - gradle checkstyleTest --info
-  - cd ..
-  - cd api
-  - gradle checkstyleTest --info
+  - gradlew.bat checkstyleTest --info
+  - cd ../api
+  - gradlew.bat checkstyleTest --info
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -86,7 +85,7 @@ pages:
     script:
     - cd project\tci-final\api
     - gradlew.bat war
-    - powershell.exe -file "../scripts/deployWar.ps1" >> asd.log
+    - powershell.exe -noexit -file "../scripts/deployWar.ps1" >> asd.log
     - cd ../../../
     - md .public
     - md .public\logic
