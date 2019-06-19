@@ -44,13 +44,13 @@ test:
   artifacts:
     when: always
     paths:
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml
-        - /builds/m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report
   
 pages:
     tags:
