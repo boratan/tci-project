@@ -22,7 +22,6 @@ checkstyle:
     paths:
         - project/tci-final/logic/build/reports/checkstyle/
         - project/tci-final/api/build/reports/checkstyle/
-
     
 build:
   stage: build
