@@ -58,10 +58,10 @@ public class ApiMain {
         if (result.getValue().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No records found!").build();
         }
-        BaseRequest baseRequest = new BaseRequest();
-        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        GetAll all = new GetAll(result.getValue());
+        RequestInfo request = makeOfficialRequest(all, result.getKey());
         writeRequestInfoToFile(request);
-        String models = getAllSerializer.serializeToJson(new GetAll(result.getValue()));
+        String models = getAllSerializer.serializeToJson(all);
         return Response.ok(models).type(MediaType.APPLICATION_JSON).build();
     }
 
@@ -87,10 +87,10 @@ public class ApiMain {
         if (result.getValue().isEmpty()){
             return Response.status(Response.Status.NOT_FOUND).entity("No record found!").build();
         }
-        BaseRequest baseRequest = new BaseRequest();
-        RequestInfo request = makeOfficialRequest(baseRequest, result.getKey());
+        GetOne one = new GetOne(result.getValue());
+        RequestInfo request = makeOfficialRequest(one, result.getKey());
         writeRequestInfoToFile(request);
-        String model = getOneSerializer.serializeToJson(new GetOne(result.getValue()));
+        String model = getOneSerializer.serializeToJson(one);
         return Response.ok(model).build();
     }
 

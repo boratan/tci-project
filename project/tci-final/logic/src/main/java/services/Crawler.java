@@ -116,7 +116,7 @@ public class Crawler {
                     //Increments the depth of the search for the next iteration
                     incrementDepth();
                     //Begins the next iteration of crawling with the newly gathered URLs
-                    crawl(newURLs, type, argument);
+                    this.visitedResults.addAll(crawl(newURLs, type, argument).getValue());
 
                 } catch (final IOException | Error ignored) {
                 }
