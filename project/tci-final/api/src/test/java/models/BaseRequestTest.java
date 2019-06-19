@@ -4,14 +4,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Author: B. Atanasov
  */
 public class BaseRequestTest {
     private BaseRequest baseRequest;
 
+    /**
+     * Setup
+     */
     @Before
     public void setUp(){
         baseRequest = new BaseRequest();

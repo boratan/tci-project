@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.mockito.Mockito.mock;
-
 /**
  * Author: M. Andreeva
  */
@@ -16,6 +14,9 @@ public class EnrichedUrlTest {
 
     private EnrichedUrl object;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         URL url = null;

@@ -20,6 +20,9 @@ public class ModelMapperTest {
     private Element movieElement;
     private Element musicElement;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         mapper = new ModelMapper();

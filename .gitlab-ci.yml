@@ -1,0 +1,102 @@
+image: gradle:alpine
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - checkstyle
+  - build
+  - test
+  - deploy
+
+checkstyle:
+    stage: checkstyle
+    script:
+        - cd project/tci-final/api
+        - ./gradlew checkstyleMain --info
+        - cd ../logic
+        - ./gradlew checkstyleMain --info
+    cache:
+        key: "$CI_COMMIT_REF_NAME"
+        policy: pull
+        paths:
+        - build
+        - .gradle
+    artifacts:
+        when: always
+        paths:
+            - project/tci-final/logic/build/reports/checkstyle/
+            - project/tci-final/api/build/reports/checkstyle/
+
+build:
+    stage: build
+    script: 
+        - cd project/tci-final/api
+        - ./gradlew --build-cache assemble
+        - cd ../logic
+        - ./gradlew --build-cache assemble
+    cache:
+        key: "$CI_COMMIT_REF_NAME"
+        policy: push
+        paths:
+            - build
+            - .gradle
+
+test:
+    stage: test
+    script:
+        - cd project/tci-final/api
+        - .gradlew test --info
+        - ./gradlew.bat jacocoTestReport --info 
+        - cd ..
+        - cd logic
+        - ./gradlew test --info
+        - ./gradlew.bat jacocoTestReport --info
+        - ./gradlew.bat jmRun
+        - ./gradlew.bat jmReport
+
+    cache:
+        key: "$CI_COMMIT_REF_NAME"
+        policy: pull
+        paths:
+            - project/tci-final/logic/build
+            - project/tci-final/api/build
+            - .gradle
+    artifacts:
+        when: always
+        paths:
+            - project/tci-final/logic/build/test-results/test/
+            - project/tci-final/logic/build/reports/tests/test/
+            - project/tci-final/logic/build/jacocoHtml/
+            - project/tci-final/api/build/test-results/test/
+            - project/tci-final/api/build/reports/tests/test/
+            - project/tci-final/api/build/jacocoHtml/
+            - project/tci-final/api/build/jmeter-report/
+
+deploy:
+    stage: deploy
+    script:
+    - cd project/tci-final/api
+    - ./gradlew.bat war
+    - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
+    - cd ../../../
+    - md .public
+    - md .public\logic
+    - md .public\logic_jacoco
+    - md .public\logic_stylecheck
+    - xcopy project/tci-final/logic/build/reports/tests/test/* .public/logic/
+    - xcopy project/tci-final/logic/build/jacocoHtml/* .public/logic_jacoco/
+    - md .public/api
+    - md .public/api_jacoco
+    - md .public/api_stylecheck
+    - xcopy project/tci-final/api/build/reports/tests/test/* .public/api/
+    - xcopy project/tci-final/api/build/jacocoHtml/* .public/api_jacoco/
+    - xcopy project/tci-final/api/build/jmeter-report/* .public/jmeter-report/
+    - mv .public public
+    artifacts:
+        when: always
+        paths:
+        - public

@@ -1,7 +1,5 @@
 package api;
 
-import api.ApiMain;
-import javafx.util.Pair;
 import main.LogicMain;
 import models.*;
 import org.junit.*;
@@ -22,6 +20,7 @@ import serializers.GetOneSerializer;
 import serializers.RequestInfoSerializer;
 import javax.ws.rs.core.Response;
 import java.net.URL;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,13 +44,28 @@ public class ApiMainTest {
     private static String allJson;
     private static String oneJson;
 
+    /**
+     * Mock
+     */
     @Mock
     LogicMain businessLogic;
+    /**
+     * Mock
+     */
     @Mock RequestInfoSerializer requestInfoSerializer;
+    /**
+     * Mock
+     */
     @Mock GetAllSerializer getAllSerializer;
+    /**
+     * Mock
+     */
     @Mock GetOneSerializer getOneSerializer;
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -75,6 +89,9 @@ public class ApiMainTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
@@ -138,8 +155,8 @@ public class ApiMainTest {
         modelSetAll.add(music);
         modelSetOne.add(movie);
 
-        Mockito.when(businessLogic.getAllFromUrl(any(URL.class))).thenReturn(new Pair<>(requestInfo, modelSetAll));
-        Mockito.when(businessLogic.getOneFromUrl(any(URL.class), any(String.class), any(String.class))).thenReturn(new Pair<>(requestInfo, modelSetOne));
+        Mockito.when(businessLogic.getAllFromUrl(any(URL.class))).thenReturn(new AbstractMap.SimpleEntry<>(requestInfo, modelSetAll));
+        Mockito.when(businessLogic.getOneFromUrl(any(URL.class), any(String.class), any(String.class))).thenReturn(new AbstractMap.SimpleEntry<>(requestInfo, modelSetOne));
         Mockito.when(requestInfoSerializer.serializeToJson(requestInfo)).thenReturn(requestInfoJson);
         Mockito.when(getOneSerializer.serializeToJson(any(GetOne.class))).thenReturn(oneJson);
         Mockito.when(getAllSerializer.serializeToJson(any(GetAll.class))).thenReturn(allJson);
@@ -183,7 +200,7 @@ public class ApiMainTest {
      */
     @Test
     public void getAllRequestReturnsCode404NotFoundIfThereWereNoModelsToReturn() throws IllegalAccessException {
-        Mockito.when(businessLogic.getAllFromUrl(any(URL.class))).thenReturn(new Pair<>(requestInfo, new HashSet<>()));
+        Mockito.when(businessLogic.getAllFromUrl(any(URL.class))).thenReturn(new AbstractMap.SimpleEntry<>(requestInfo, new HashSet<>()));
         MemberModifier.field(ApiMain.class, "businessLogic").set(apiMain, businessLogic);
 
         Response result = apiMain.getAll("http://www.example.com");
@@ -222,7 +239,7 @@ public class ApiMainTest {
     @Test
     public void getOneRequestReturnsCode404NotFoundIfThereWasNotSuchModel() throws IllegalAccessException {
         Mockito.when(businessLogic.getOneFromUrl(any(URL.class), any(String.class), any(String.class)))
-                .thenReturn(new Pair<>(requestInfo, new HashSet<>()));
+                .thenReturn(new AbstractMap.SimpleEntry<>(requestInfo, new HashSet<>()));
         MemberModifier.field(ApiMain.class, "businessLogic").set(apiMain, businessLogic);
 
         Response result = apiMain.getOne("http://www.example.com", "", "");

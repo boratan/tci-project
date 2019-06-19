@@ -3,6 +3,8 @@ plugins {
     id 'idea'
     id 'war'
     id "net.foragerr.jmeter" version "1.0.3-2.13"
+    id 'jacoco'
+    id 'checkstyle'
 }
 
 group 'tci'
@@ -30,6 +32,7 @@ idea {
 }
 
 war {
+    destinationDir = new File('out')
     archiveName = 'tci.war'
 }
 
@@ -64,4 +67,21 @@ dependencies {
     // https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2
     testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.2'
     testCompile 'org.glassfish.jersey.core:jersey-common:2.22.2'
+}
+
+test {
+    ignoreFailures = true
+}
+
+jacoco {
+    toolVersion = "0.8.3"
+    reportsDir = file("$buildDir/jacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
 }

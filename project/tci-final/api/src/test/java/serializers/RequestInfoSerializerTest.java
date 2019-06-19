@@ -9,6 +9,9 @@ import org.junit.Test;
 public class RequestInfoSerializerTest {
     private RequestInfoSerializer requestInfoSerializer;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         requestInfoSerializer = new RequestInfoSerializer();

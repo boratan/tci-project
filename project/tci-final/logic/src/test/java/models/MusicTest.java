@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static matchers.IsValidYearMatcher.isValidYearMatcher;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static matchers.MusicMatcher.assertThat;
@@ -18,6 +15,9 @@ public class MusicTest {
 
     private Music music;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         music = new Music("test song", "test genre", "test format", 1999, "test artist" );

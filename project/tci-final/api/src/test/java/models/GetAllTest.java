@@ -13,11 +13,17 @@ import java.util.*;
 
 import static org.mockito.Mockito.mock;
 
+/**
+ * GetAll test class
+ */
 public class GetAllTest {
 
     private GetAll ga;
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -41,12 +47,21 @@ public class GetAllTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * Setup
+     */
     @Before
     public void setUp() {
         ga = new GetAll();

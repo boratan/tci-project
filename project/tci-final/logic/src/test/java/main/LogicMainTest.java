@@ -1,7 +1,5 @@
 package main;
 
-import javafx.util.Pair;
-import main.LogicMain;
 import models.IModel;
 import models.RequestInfo;
 import org.junit.Before;
@@ -20,8 +18,12 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import services.ThreadService;
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
+/**
+ * logic test
+ */
 @RunWith(MockitoJUnitRunner.class)
 @PrepareForTest(LogicMain.class)
 public class LogicMainTest {
@@ -33,10 +35,16 @@ public class LogicMainTest {
     private String argument;
 
 
+    /**
+     * mocking
+     */
     @Mock
     ThreadService threadService;
 
     private String testLog = "";
+    /**
+     * rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -60,12 +68,21 @@ public class LogicMainTest {
         }
     };
 
+    /**
+     * rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() throws Exception {
         logicMain = new LogicMain();
@@ -93,7 +110,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlInvokesCrawlAndScrapeMethodIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair != null;
     }
 
@@ -104,7 +121,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsNotNullPairIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair != null;
     }
 
@@ -115,7 +132,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsPairWithNotNullRequestInfoIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair.getKey() != null;
     }
 
@@ -126,7 +143,7 @@ public class LogicMainTest {
     @Test
     public void getAllFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlIsNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getAllFromUrl(url);
         assert pair.getValue() != null;
     }
 
@@ -156,7 +173,7 @@ public class LogicMainTest {
 //        when(crawler.crawl(urls, type, argument)).thenReturn(new Pair<>(null, null));
 
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
         assert pair != null;
     }
 
@@ -167,7 +184,7 @@ public class LogicMainTest {
     @Test
     public void getOneFromUrlReturnsPairWithNotNullRequestInfoIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
         assert pair.getKey() != null;
     }
 
@@ -178,7 +195,7 @@ public class LogicMainTest {
     @Test
     public void getOneFromUrlReturnsPairWithNotNullSetOfIModelsIfUrlTypeAndArgumentAreNotNull() throws IllegalAccessException {
         MemberModifier.field(LogicMain.class, "threadService").set(logicMain, threadService);
-        Pair<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
+        Map.Entry<RequestInfo, Set<IModel>> pair = logicMain.getOneFromUrl(url, type, argument);
         assert pair.getValue() != null;
     }
 }
