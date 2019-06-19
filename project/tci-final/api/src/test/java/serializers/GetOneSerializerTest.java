@@ -11,6 +11,9 @@ public class GetOneSerializerTest {
 
     private GetOneSerializer serializer;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() {
         serializer = new GetOneSerializer();

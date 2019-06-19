@@ -4,14 +4,26 @@ import models.Movie;
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
 
+/**
+ * Matcher for movie
+ */
 public class MovieMatcher extends GenericAssert<MovieMatcher, Movie> {
 
+    /**
+     * constructor
+     */
     public MovieMatcher(Movie actual) {
         super(MovieMatcher.class, actual);
     }
+    /**
+     * assertor
+     */
     public static MovieMatcher assertThat(Movie actual) {
         return new MovieMatcher(actual);
     }
+    /**
+     * assert
+     */
     public MovieMatcher hasName(String name) {
         isNotNull();
         String errorMessage = String.format(
@@ -22,7 +34,9 @@ public class MovieMatcher extends GenericAssert<MovieMatcher, Movie> {
                 .isEqualTo(name);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MovieMatcher hasDirector(String director) {
         isNotNull();
         String errorMessage = String.format(
@@ -33,7 +47,9 @@ public class MovieMatcher extends GenericAssert<MovieMatcher, Movie> {
                 .isEqualTo(director);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MovieMatcher hasFormat(String format) {
         isNotNull();
         String errorMessage = String.format(
@@ -44,7 +60,9 @@ public class MovieMatcher extends GenericAssert<MovieMatcher, Movie> {
                 .isEqualTo(format);
         return this;
     }
-
+    /**
+     * assert
+     */
     public MovieMatcher hasGenre(String arg) {
         isNotNull();
         String errorMessage = String.format(

@@ -44,13 +44,28 @@ public class ApiMainTest {
     private static String allJson;
     private static String oneJson;
 
+    /**
+     * Mock
+     */
     @Mock
     LogicMain businessLogic;
+    /**
+     * Mock
+     */
     @Mock RequestInfoSerializer requestInfoSerializer;
+    /**
+     * Mock
+     */
     @Mock GetAllSerializer getAllSerializer;
+    /**
+     * Mock
+     */
     @Mock GetOneSerializer getOneSerializer;
 
     private String testLog = "";
+    /**
+     * Rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -74,6 +89,9 @@ public class ApiMainTest {
         }
     };
 
+    /**
+     * Rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 

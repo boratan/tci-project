@@ -27,7 +27,7 @@ public class Crawler {
         this.visitedResults = new HashSet<>();
         this.headURL = null;
         this.depth = 0;
-        this.SetThreadService(ts);
+        this.setThreadService(ts);
     }
 
     public Set<EnrichedUrl> getVisited() {
@@ -56,7 +56,7 @@ public class Crawler {
      *
      * @param ts Thread Service to assign. Cannot be null.
      */
-    private void SetThreadService(ThreadService ts) {
+    private void setThreadService(ThreadService ts) {
         if (ts != null) this.threadService = ts;
         else throw new IllegalArgumentException();
     }
@@ -115,7 +115,7 @@ public class Crawler {
                     //Increments the depth of the search for the next iteration
                     incrementDepth();
                     //Begins the next iteration of crawling with the newly gathered URLs
-                    crawl(newURLs, type, argument);
+                    this.visitedResults.addAll(crawl(newURLs, type, argument).getValue());
 
                 } catch (final IOException | Error ignored) {
                 }

@@ -21,6 +21,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * logic test
+ */
 @RunWith(MockitoJUnitRunner.class)
 @PrepareForTest(LogicMain.class)
 public class LogicMainTest {
@@ -32,10 +35,16 @@ public class LogicMainTest {
     private String argument;
 
 
+    /**
+     * mocking
+     */
     @Mock
     ThreadService threadService;
 
     private String testLog = "";
+    /**
+     * rule
+     */
     @Rule
     public final TestRule watchman = new TestWatcher() {
         @Override
@@ -59,12 +68,21 @@ public class LogicMainTest {
         }
     };
 
+    /**
+     * rule
+     */
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
+    /**
+     * rule
+     */
     @Rule
     public TestRule globalTimeout = Timeout.seconds(7);
 
+    /**
+     * setup
+     */
     @Before
     public void setUp() throws Exception {
         logicMain = new LogicMain();

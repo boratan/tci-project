@@ -10,6 +10,9 @@ import org.junit.Test;
 public class RequestInfoTest {
     private RequestInfo requestInfo;
 
+    /**
+     * setup
+     */
     @Before
     public void setUp(){
         requestInfo = new RequestInfo(10, 5, 2);
@@ -20,7 +23,7 @@ public class RequestInfoTest {
      * Checks that pagesExplored is not null after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestPagesExploredIsNotNullWhenConstructorIsInvoked(){
+    public void requestPagesExploredIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(requestInfo.getPagesExplored());
     }
 
@@ -28,7 +31,7 @@ public class RequestInfoTest {
      * Checks that uniquePagesExplored is not null after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestUniquePagesExploredNotNullWhenConstructorIsInvoked(){
+    public void requestUniquePagesExploredNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(requestInfo.getUniquePagesExplored());
     }
 
@@ -36,7 +39,7 @@ public class RequestInfoTest {
      * Checks that searchDepth is not null after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestSearchDepthIsNotNullWhenConstructorIsInvoked(){
+    public void requestSearchDepthIsNotNullWhenConstructorIsInvoked(){
         Assert.assertNotNull(requestInfo.getSearchDepth());
     }
 
@@ -44,7 +47,7 @@ public class RequestInfoTest {
      * Verifies that NullPointerException is thrown if the id is set to null.
      */
     @Test(expected = NullPointerException.class)
-    public void RequestIdReturnsLegalArgumentExceptionIfSetToNull(){
+    public void requestIdReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setId(null);
     }
 
@@ -52,7 +55,7 @@ public class RequestInfoTest {
      * Verifies that IllegalArgumentException is thrown if the id is set to a negative value.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void RequestIdReturnsLegalArgumentExceptionIfSetToNegative(){
+    public void requestIdReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setId(-3);
     }
 
@@ -61,7 +64,7 @@ public class RequestInfoTest {
      * Verifies that NullPointerException is thrown if the time is set to null.
      */
     @Test (expected = NullPointerException.class)
-    public void RequestTimeReturnsLegalArgumentExceptionIfSetToNull(){
+    public void requestTimeReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setTime(null);
     }
 
@@ -69,7 +72,7 @@ public class RequestInfoTest {
      * Verifies that IllegalArgumentException is thrown if the time is set to a negative value.
      */
     @Test (expected = IllegalArgumentException.class)
-    public void RequestTimeReturnsLegalArgumentExceptionIfSetToNegative(){
+    public void requestTimeReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setTime(-3);
     }
 
@@ -77,7 +80,7 @@ public class RequestInfoTest {
      * Verifies that NullPointerException is thrown if the uniquePagesExplored is set to null.
      */
     @Test(expected = NullPointerException.class)
-    public void RequestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
+    public void requestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setUniquePagesExplored(null);
     }
 
@@ -85,7 +88,7 @@ public class RequestInfoTest {
      * Verifies that IllegalArgumentException is thrown if the uniquePagesExplored is set to a negative value.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void RequestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
+    public void requestUniquePagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setUniquePagesExplored(-3);
     }
 
@@ -93,7 +96,7 @@ public class RequestInfoTest {
      * Verifies that NullPointerException is thrown if the pagesExplored is set to null.
      */
     @Test(expected = NullPointerException.class)
-    public void RequestPagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
+    public void requestPagesExploredReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setPagesExplored(null);
     }
 
@@ -101,7 +104,7 @@ public class RequestInfoTest {
      * Verifies that IllegalArgumentException is thrown if the pagesExplored is set to a negative value.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void RequestPagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
+    public void requestPagesExploredReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setPagesExplored(-3);
     }
 
@@ -109,7 +112,7 @@ public class RequestInfoTest {
      * Verifies that NullPointerException is thrown if the searchDepth is set to null.
      */
     @Test(expected = NullPointerException.class)
-    public void RequestSearchDepthReturnsLegalArgumentExceptionIfSetToNull(){
+    public void requestSearchDepthReturnsLegalArgumentExceptionIfSetToNull(){
         requestInfo.setSearchDepth(null);
     }
 
@@ -117,7 +120,7 @@ public class RequestInfoTest {
      * Verifies that IllegalArgumentException is thrown if the searchDepth is set to a negative value.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void RequestSearchDepthReturnsLegalArgumentExceptionIfSetToNegative(){
+    public void requestSearchDepthReturnsLegalArgumentExceptionIfSetToNegative(){
         requestInfo.setSearchDepth(-3);
     }
 
@@ -125,7 +128,7 @@ public class RequestInfoTest {
      * Checks that the correct value of pagesExplored is set after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestPagesExploredReturnedIsInvoked(){
+    public void requestPagesExploredReturnedIsInvoked(){
         Integer pagesE = 10;
 
         Assert.assertEquals(pagesE, requestInfo.getPagesExplored());
@@ -135,7 +138,7 @@ public class RequestInfoTest {
      * Checks that the correct value of uniquePagesExplored is set after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestUniquePagesExploredReturnedIsInvoked(){
+    public void requestUniquePagesExploredReturnedIsInvoked(){
         Integer pagesU = 5;
 
         Assert.assertEquals(pagesU, requestInfo.getUniquePagesExplored());
@@ -145,7 +148,7 @@ public class RequestInfoTest {
      * Checks that the correct value of searchDepth is set after the creation of the RequestInfo object.
      */
     @Test
-    public void RequestSearchDepthReturnedIsInvoked(){
+    public void requestSearchDepthReturnedIsInvoked(){
         Integer depth = 2;
 
         Assert.assertEquals(depth, requestInfo.getSearchDepth());

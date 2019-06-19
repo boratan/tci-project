@@ -4,6 +4,7 @@ plugins {
     id 'war'
     id "net.foragerr.jmeter" version "1.0.3-2.13"
     id 'jacoco'
+    id 'checkstyle'
 }
 
 group 'tci'

@@ -10,6 +10,9 @@ import org.junit.Test;
 public class BaseRequestTest {
     private BaseRequest baseRequest;
 
+    /**
+     * Setup
+     */
     @Before
     public void setUp(){
         baseRequest = new BaseRequest();
