@@ -1,4 +1,3 @@
-
 stages:
     - checkstyle
     - build
@@ -14,7 +13,7 @@ checkstyle:
   - ./gradlew.bat checkstyleMain --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
-    policy: pull
+    policy: push
     paths:
       - build
       - .gradle
@@ -36,7 +35,7 @@ build:
   - ./gradlew.bat build --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
-    policy: pull
+    policy: push
     paths:
       - build
       - .gradle
@@ -56,7 +55,7 @@ test:
         - ./gradlew.bat jmReport
     cache:
         key: "$CI_COMMIT_REF_NAME"
-        policy: pull
+        policy: push
         paths:
             - project/tci-final/logic/build
             - project/tci-final/api/build
