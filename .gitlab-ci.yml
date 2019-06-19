@@ -11,9 +11,9 @@ checkstyle:
   - Maria
   script: 
   - cd project/tci-final/logic
-  - gradlew.bat checkstyleMain --info
+  - .\gradlew.bat checkstyleMain --info
   - cd ../api
-  - gradlew.bat checkstyleMain --info
+  - .\gradlew.bat checkstyleMain --info
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -34,9 +34,9 @@ build:
   stage: build
   script: 
   - cd project/tci-final/logic
-  - gradlew.bat build --info
+  - .\gradlew.bat build --info
   - cd ../api
-  - gradlew.bat build --info
+  - .\gradlew.bat build --info
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -51,13 +51,13 @@ test:
   stage: test
   script: 
   - cd project/tci-final/logic
-  - gradlew.bat test --info
-  - gradlew.bat jacocoTestReport --info
+  - .\gradlew.bat test --info
+  - .\gradlew.bat jacocoTestReport --info
   - cd ../api
-  - gradlew.bat test --info
-  - gradlew.bat jacocoTestReport --info
-  - gradlew.bat jmRun
-  - gradlew.bat jmReport
+  - .\gradlew.bat test --info
+  - .\gradlew.bat jacocoTestReport --info
+  - .\gradlew.bat jmRun
+  - .\gradlew.bat jmReport
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -85,7 +85,7 @@ pages:
     - test
     script:
     - cd project\tci-final\api
-    - gradlew.bat war
+    - .\gradlew.bat war
     - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
     - cd ../../../
     - md .public
