@@ -1,11 +1,6 @@
-image: gradle:alpine
-
 stages:
   - build
   - test
-
-variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -14,10 +9,10 @@ build:
   stage: build
   script:
     - cd project/tci-final/api
-    - gradle build
+    - gradlew.bat build --stacktrace
     - cd ..
     - cd api
-    - gradle build
+    - gradlew.bat build --stacktrace
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
@@ -29,11 +24,16 @@ test:
   stage: test
   script:
     - cd project/tci-final/api
-    - gradle test
+    - gradlew.bat test
     - cd ..
     - cd api
-    - gradle test
-
+    - gradlew.bat test
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
 
 after_script:
   - echo "End CI"

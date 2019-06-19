@@ -149,7 +149,7 @@ public class Crawler {
     private void addAndScrapeURL(URL url, String type, String argument) {
         EnrichedUrl enrichedURL = new EnrichedUrl(url, this.depth);
         this.visited.add(enrichedURL);
-        this.threadService.scrape(enrichedURL, type, argument);
+        this.threadService.scrape(enrichedURL);
     }
 
     /**
