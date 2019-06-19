@@ -1,9 +1,34 @@
 
 stages:
+    - checkstyle
     - build
     - test
     - deploy
-        
+
+checkstyle:
+  stage: checkstyle
+  tags:
+  - Maria
+  script: 
+  - cd project/tci-final/logic
+  - gradle checkstyleTest --info
+  - cd ..
+  - cd api
+  - gradle checkstyleTest --info
+  allow_failure: true
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  artifacts:
+    when: always
+    paths:
+        - m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/checkstyle/
+        - m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/checkstyle/
+
+    
 build:
   tags:
   - Maria
@@ -44,13 +69,13 @@ test:
   artifacts:
     when: always
     paths:
-        - \m_andreeva\tci-group-assignment\project\tci-final\logic\build\test-results\test
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml
-        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test/
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test/
+        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml/
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test/
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test/
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jacocoHtml/
+        - /m_andreeva/tci-group-assignment/project/tci-final/api/build/jmeter-report/
   
 pages:
     tags:
