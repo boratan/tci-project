@@ -79,6 +79,8 @@ public class Crawler {
             //Sets the head URL to the link on which the crawling has begun
             if (getHeadURL() == null && !urls.isEmpty())
                 this.headURL = urls.iterator().next();
+            else if (getHeadURL() == null && urls.isEmpty())
+                throw new IllegalArgumentException("Base URL is empty");
 
             //Clear urls from already crawled URLs
             clearRepeatingURLs(urls);

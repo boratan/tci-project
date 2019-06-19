@@ -142,7 +142,7 @@ public class CrawlerTest {
      */
     @Test
     public void afterCallingCrawlMethodWithLegalUrlArgumentItReturnsPairOfLegalEnrichedUrlAndSet() {
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         assert pair != null;
     }
 
@@ -152,7 +152,7 @@ public class CrawlerTest {
      */
     @Test
     public void afterCallingCrawlMethodWithLegalUrlArgumentWithChildLinksDepthIncreases(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         Assert.assertNotEquals(0, (int)pair.getKey().getDepth());
     }
 
@@ -161,7 +161,7 @@ public class CrawlerTest {
      */
     @Test
     public void afterCallingCrawlMethodWithLegalUrlScrapeIsCalled(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         verify(ts).scrape(crawler.getVisited().iterator().next());
     }
 
@@ -171,7 +171,7 @@ public class CrawlerTest {
      */
     @Test
     public void afterCallingCrawlMethodWithLegalUrlCheckFutureTasksIsCalledOnlyOnce(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, null, null);
         verify(ts, times(1)).checkFutureTasks();
     }
 
@@ -181,7 +181,7 @@ public class CrawlerTest {
      */
     @Test
     public void afterCallingCrawlMethodWithLegalUrlTypeAndArgumentCheckFutureTasksForSpecificItemIsCalledAtLeastOnce(){
-        Pair<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, type, argument);
+        Map.Entry<EnrichedUrl, Set<IModel>> pair = crawler.crawl(urls, type, argument);
         verify(ts, atLeastOnce()).checkFutureTasksForSpecificItem(type,argument);
     }
 }

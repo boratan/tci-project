@@ -32,7 +32,6 @@ idea {
 }
 
 war {
-    destinationDir = new File('out')
     archiveName = 'tci.war'
 }
 
