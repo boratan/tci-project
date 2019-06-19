@@ -44,7 +44,7 @@ test:
   artifacts:
     when: always
     paths:
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test
+        - \m_andreeva\tci-group-assignment\project\tci-final\logic\build\test-results\test
         - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test
         - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml
         - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test
