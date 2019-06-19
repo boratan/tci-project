@@ -7,14 +7,11 @@ stages:
 
 checkstyle:
   stage: checkstyle
-  tags:
-  - Maria
   script: 
   - cd project/tci-final/logic
-  - .\gradlew.bat checkstyleMain --info
+  - ./gradlew.bat checkstyleMain --info
   - cd ../api
-  - .\gradlew.bat checkstyleMain --info
-  allow_failure: true
+  - ./gradlew.bat checkstyleMain --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
@@ -29,15 +26,14 @@ checkstyle:
 
     
 build:
-  tags:
-  - Maria
   stage: build
+  dependencies:
+    - checkstyle
   script: 
   - cd project/tci-final/logic
-  - .\gradlew.bat build --info
+  - ./gradlew.bat build --info
   - cd ../api
-  - .\gradlew.bat build --info
-  allow_failure: true
+  - ./gradlew.bat build --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
@@ -47,17 +43,17 @@ build:
       
 test:
     stage: test
+    dependencies:
+    - build
     script:
-        - cd project/tci-final/api
+        - cd project/tci-final/logic
         - ./gradlew test --info
         - ./gradlew.bat jacocoTestReport --info 
-        - cd ..
-        - cd logic
+        - cd ../api
         - ./gradlew test --info
         - ./gradlew.bat jacocoTestReport --info
         - ./gradlew.bat jmRun
         - ./gradlew.bat jmReport
-
     cache:
         key: "$CI_COMMIT_REF_NAME"
         policy: pull
@@ -79,29 +75,26 @@ test:
 deploy:
     stage: deploy
     dependencies:
-    - test
+        - test
     script:
-    - cd project\tci-final\api
-    - .\gradlew.bat war
-    - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
-    - cd ../../../
-    - md .public
-    - md .public\logic
-    - md .public\logic_jacoco
-    - md .public\logic_stylecheck
-    - xcopy project\tci-final\logic\build\reports\tests\test\* .public\logic\
-    - xcopy project\tci-final\logic\build\jacocoHtml\* .public\logic_jacoco\
-    - md .public\api
-    - md .public\api_jacoco
-    - md .public\api_stylecheck
-    - xcopy project\tci-final\api\build\reports\tests\test\* .public\api\
-    - xcopy project\tci-final\api\build\jacocoHtml\* .public\api_jacoco\
-    - xcopy project\tci-final\api\build\jmeter-report\* .public\jmeter-report\
-    - mv .public public
-    allow_failure: true
+        - cd project\tci-final\api
+        - ./gradlew.bat war
+        - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
+        - cd ../../../
+        - md .public
+        - md .public/logic
+        - md .public/logic_jacoco
+        - md .public/logic_stylecheck
+        - xcopy project/tci-final/logic/build/reports/tests/test/* .public/logic/
+        - xcopy project/tci-final/logic/build/jacocoHtml/* .public/logic_jacoco/
+        - md .public/api
+        - md .public/api_jacoco
+        - md .public/api_stylecheck
+        - xcopy project/tci-final/api/build/reports/tests/test/* .public/api/
+        - xcopy project/tci-final/api/build/jacocoHtml/* .public/api_jacoco/
+        - xcopy project/tci-final/api/build/jmeter-report/* .public/jmeter-report/
+        - mv .public public
     artifacts:
         when: always
         paths:
         - public
-    only:
-    - dev-ci
