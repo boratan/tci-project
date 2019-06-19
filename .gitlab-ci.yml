@@ -68,8 +68,8 @@ test:
   artifacts:
     when: always
     paths:
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/test-results/test/
-        - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/reports/tests/test/
+        - project/tci-final/logic/build/test-results/test/
+        - project/tci-final/logic/build/reports/tests/test/
         - /m_andreeva/tci-group-assignment/project/tci-final/logic/build/jacocoHtml/
         - /m_andreeva/tci-group-assignment/project/tci-final/api/build/test-results/test/
         - /m_andreeva/tci-group-assignment/project/tci-final/api/build/reports/tests/test/
@@ -85,7 +85,7 @@ pages:
     script:
     - cd project\tci-final\api
     - gradlew.bat war
-    - powershell.exe -noexit -file "../scripts/deployWar.ps1" >> asd.log
+    - powershell.exe -noexit -file "../scripts/deployWar.ps1" | Out-File asd.log
     - cd ../../../
     - md .public
     - md .public\logic
