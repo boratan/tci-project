@@ -59,20 +59,20 @@ pages:
     dependencies:
     - test
     script:
-    - mkdir .public
-    - mkdir .public/logic
-    - mkdir .public/logic_jacoco
-    - mkdir .public/logic_stylecheck
-    - cp -r project/tci-final/logic/build/reports/tests/test/* .public/logic
-    - cp -r project/tci-final/logic/build/jacocoHtml/* .public/logic_jacoco
-    - mkdir .public/api
-    - mkdir .public/api_jacoco
-    - mkdir .public/api_stylecheck
-    - cp -r project/tci-final/api/build/reports/tests/test/* .public/api
-    - cp -r project/tci-final/api/build/jacocoHtml/* .public/api_jacoco
-    - cp -r project/tci-final/api/build/jmeter-report/* .public/jmeter-report
+    - md .public
+    - md .public\logic
+    - md .public\logic_jacoco
+    - md .public\logic_stylecheck
+    - xcopy project\tci-final\logic\build\reports\tests\test\* .public\logic
+    - xcopy project\tci-final\logic\build\jacocoHtml\* .public\logic_jacoco
+    - md .public\api
+    - md .public\api_jacoco
+    - md .public\api_stylecheck
+    - xcopy project\tci-final\api\build\reports\tests\test\* .public\api
+    - xcopy project\tci-final\api\build\jacocoHtml\* .public\api_jacoco
+    - xcopy project\tci-final\api\build\jmeter-report\* .public\jmeter-report
     - mv .public public
-    - cd project/tci-final/api
+    - copy project\tci-final\api
     - gradlew.bat war
     - ../scripts/deployWar.ps1
     allow_failure: true
