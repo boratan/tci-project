@@ -61,7 +61,7 @@ pages:
     script:
     - cd project\tci-final\api
     - gradlew.bat war
-    - powershell.exe -file "../scripts/deployWar.ps1"
+    - powershell.exe -file "../scripts/deployWar.ps1" >> asd.log
     - cd ../../../
     - md .public
     - md .public\logic
