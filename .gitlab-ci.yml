@@ -24,6 +24,7 @@ build:
     paths:
       - build
       - .gradle
+    allow_failure: true
 
 test:
   stage: test
