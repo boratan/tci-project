@@ -59,6 +59,10 @@ pages:
     dependencies:
     - test
     script:
+    - cd project\tci-final\api
+    - gradlew.bat war
+    - ../scripts/deployWar.ps1
+    - cd ../../../
     - md .public
     - md .public\logic
     - md .public\logic_jacoco
@@ -72,9 +76,6 @@ pages:
     - xcopy project\tci-final\api\build\jacocoHtml\* .public\api_jacoco
     - xcopy project\tci-final\api\build\jmeter-report\* .public\jmeter-report
     - mv .public public
-    - copy project\tci-final\api
-    - gradlew.bat war
-    - ../scripts/deployWar.ps1
     allow_failure: true
     artifacts:
         when: always
