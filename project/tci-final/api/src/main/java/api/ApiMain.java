@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Set;
+import static java.lang.Math.toIntExact;
 
 @Path("api")
 public class ApiMain {
@@ -59,6 +60,7 @@ public class ApiMain {
             return Response.status(Response.Status.NOT_FOUND).entity("No records found!").build();
         }
         GetAll all = new GetAll(result.getValue());
+        System.out.println(all.getTimeInMilli());
         RequestInfo request = makeOfficialRequest(all, result.getKey());
         writeRequestInfoToFile(request);
         String models = getAllSerializer.serializeToJson(all);
@@ -143,7 +145,7 @@ public class ApiMain {
      */
     private RequestInfo makeOfficialRequest(BaseRequest baseRequest, RequestInfo requestInfo){
         requestInfo.setId(baseRequest.getId());
-        requestInfo.setTime((int) baseRequest.getTimeInMilli());
+        requestInfo.setTime(baseRequest.getTimeInMilli());
         return requestInfo;
     }
 }

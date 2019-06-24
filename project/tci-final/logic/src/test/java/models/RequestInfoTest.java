@@ -73,7 +73,7 @@ public class RequestInfoTest {
      */
     @Test (expected = IllegalArgumentException.class)
     public void requestTimeReturnsLegalArgumentExceptionIfSetToNegative(){
-        requestInfo.setTime(-3);
+        requestInfo.setTime(Long.valueOf(-3));
     }
 
     /**

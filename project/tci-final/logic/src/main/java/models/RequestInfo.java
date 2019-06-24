@@ -2,7 +2,7 @@ package models;
 
 public class RequestInfo implements IModel{
     private Integer id;
-    private Integer time;
+    private Long time;
     private Integer pagesExplored;
     private Integer uniquePagesExplored;
     private Integer searchDepth;
@@ -15,11 +15,11 @@ public class RequestInfo implements IModel{
         this.searchDepth = searchDepth;
     }
 
-    public Integer getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(Long time) {
         if (time > 0)
             this.time = time;
         else
